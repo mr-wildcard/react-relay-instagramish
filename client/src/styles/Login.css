@@ -1,0 +1,28 @@
+.root {
+    composes: ui container from 'semantic';
+    height: 100%;
+    text-align: center;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    composes: ui header from 'semantic';
+}
+
+.input {
+    composes: ui massive input from 'semantic';
+}
+
+.button {
+    composes: massive teal ui button from 'semantic';
+    display: block !important;
+    margin-top: 20px !important;
+    width: 100%;
+}
+
+.button-error {
+    composes: button;
+    background-color: #DB2828 !important;
+}

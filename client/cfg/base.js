@@ -34,7 +34,9 @@ module.exports = {
 
             ,
 
-            semantic: path.join(__dirname, '../semantic/dist/semantic.css')
+            semantic: path.join(__dirname, '../semantic/dist/semantic.css'),
+            themes: path.join(__dirname, '../semantic/dist/themes'),
+            AppState: path.join(srcPath, 'AppState.js')
         }
     },
     module: {
@@ -65,7 +67,7 @@ module.exports = {
                 loader: 'style-loader!css-loader!postcss-loader!stylus-loader'
             },
             {
-                test: /\.(png|jpg|gif|woff|woff2)$/,
+                test: /\.(png|jpg|gif|woff|woff2|ttf|eot|svg)$/,
                 loader: 'url-loader?limit=8192'
             }
         ]

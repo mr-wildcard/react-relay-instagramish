@@ -8,27 +8,31 @@ var baseConfig = require('./base');
 var BowerWebpackPlugin = require('bower-webpack-plugin');
 
 var config = _.merge({
-  entry: [
-    'webpack-dev-server/client?http://127.0.0.1:8000',
-    'webpack/hot/only-dev-server',
-    './src/components/run'
-  ],
-  cache: true,
-  devtool: 'eval',
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new BowerWebpackPlugin({
-      searchResolveModulesDirectories: false
-    })
-  ]
+    entry: [
+        'webpack-dev-server/client?http://127.0.0.1:8000',
+        'webpack/hot/only-dev-server',
+        './src/components/run'
+    ],
+    cache: true,
+    devtool: 'eval',
+    plugins: [
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        }),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin(),
+        new BowerWebpackPlugin({
+            searchResolveModulesDirectories: false
+        })
+    ]
 }, baseConfig);
 
 // Add needed loaders
 config.module.loaders.push({
-  test: /\.(js|jsx)$/,
-  loader: 'react-hot!babel-loader',
-  include: path.join(__dirname, '/../src')
+    test: /\.(js|jsx)$/,
+    loader: 'react-hot!babel-loader',
+    include: path.join(__dirname, '/../src')
 });
 
 module.exports = config;
