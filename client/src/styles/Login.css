@@ -22,7 +22,11 @@
     width: 100%;
 }
 
-.button-error {
-    composes: button;
-    background-color: #DB2828 !important;
+.input-error {
+    composes: input;
+    composes: error from 'semantic';
+}
+
+.shake-it {
+    composes: shake-chunk shake-constant shake-constant--hover from 'csshake/dist/csshake.css';
 }
