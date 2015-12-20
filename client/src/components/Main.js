@@ -1,7 +1,8 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
 import styles from 'styles/App.css';
-import LoginComponent from './LoginComponent';
+import Login from './LoginComponent';
+import Header from './parts/HeaderComponent';
 import { loggedIn } from '../AppState';
 
 class AppComponent extends React.Component {
@@ -10,12 +11,23 @@ class AppComponent extends React.Component {
         this.props.history.pushState(null, 'feed');
     }
 
+    get composedChildren() {
+        
+        return (
+            <div>
+                <Header />
+
+                {this.props.children}
+            </div>
+        )
+    }
+
     render() {
 
         return (
             <div styleName="root">
 
-                {(loggedIn() && this.props.children) || <LoginComponent onLoggedInHandler={this.handleLogingIn.bind(this)} />}
+                {(loggedIn() && this.composedChildren) || <Login onLoggedInHandler={this.handleLogingIn.bind(this)} />}
 
             </div>
         );

@@ -13,16 +13,8 @@ import { appState, loggedIn } from '../AppState';
 ReactDOM.render((
     <Router history={createBrowserHistory()}>
         <Route path="/" component={App}>
-            <Route path="feed" component={Feed} onEnter={requireAuth} />
-            <Route path="selfie" component={Selfie} onEnter={requireAuth} />
+            <Route path="feed" component={Feed} />
+            <Route path="selfie" component={Selfie} />
         </Route>
     </Router>
 ), document.getElementById('app'));
-
-
-function requireAuth(nextState, replaceState) {
-
-    if (!loggedIn) {
-        replaceState({ nextPathname: nextState.location.pathname }, '/');
-    }
-}

@@ -1,0 +1,3 @@
+.root {
+    composes: ui top fixed menu from 'semantic';
+}
