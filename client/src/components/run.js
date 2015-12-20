@@ -1,31 +1,28 @@
 import 'core-js/fn/object/assign';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, IndexRoute } from 'react-router';
 import { RelayRouter } from 'react-router-relay';
-import createHashHistory from 'history/lib/createHashHistory';
+import { Router, Route, IndexRoute } from 'react-router';
+import createBrowserHistory from 'history/lib/createBrowserHistory'
 import App from './Main';
 import Login from './LoginComponent';
 import Feed from './FeedComponent';
 import Selfie from './SelfieComponent';
-import { appState } from 'AppState';
-
-const history = createHashHistory({queryKey: false});
+import { appState, loggedIn } from '../AppState';
 
 ReactDOM.render((
-    <RelayRouter history={history}>
+    <Router history={createBrowserHistory()}>
         <Route path="/" component={App}>
-            <IndexRoute component={Login} />
-            <Route path="/feed" component={Feed} onEnter={requireAuth} />
-            <Route path="/selfie" component={Selfie} onEnter={requireAuth} />
+            <Route path="feed" component={Feed} onEnter={requireAuth} />
+            <Route path="selfie" component={Selfie} onEnter={requireAuth} />
         </Route>
-    </RelayRouter>
+    </Router>
 ), document.getElementById('app'));
 
 
 function requireAuth(nextState, replaceState) {
 
-    if (!appState.get('nickname') > 0) {
-        replaceState(null, '/');
+    if (!loggedIn) {
+        replaceState({ nextPathname: nextState.location.pathname }, '/');
     }
 }

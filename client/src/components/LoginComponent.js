@@ -3,12 +3,14 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
 import cs from 'classnames';
+import { createLocation } from 'history'
 import styles from 'styles/Login.css';
-import { appState } from 'AppState';
+import { login } from '../AppState';
 
 class LoginComponent extends React.Component {
 
     constructor(props) {
+
         super(props);
 
         this.state = {
@@ -33,11 +35,16 @@ class LoginComponent extends React.Component {
 
         this.setState({
             error: nickname.length == 0
-        });
+        }, () => {
 
-        if (nickname.length > 0) {
-            appState.set('nickname', nickname);
-        }
+            if (nickname.length > 0) {
+
+                login(nickname);
+
+                this.props.onLoggedInHandler();
+            }
+
+        });
     }
 
     render() {
@@ -66,9 +73,8 @@ class LoginComponent extends React.Component {
 }
 
 LoginComponent.displayName = 'LoginComponent';
-
-// Uncomment properties you need
-// LoginComponent.propTypes = {};
-// LoginComponent.defaultProps = {};
+LoginComponent.propTypes = {
+    onLoggedInHandler: React.PropTypes.func.isRequired
+};
 
 export default CSSModules(LoginComponent, styles, { allowMultiple: true });

@@ -28,5 +28,5 @@
 }
 
 .shake-it {
-    composes: shake-chunk shake-constant shake-constant--hover from 'csshake/dist/csshake.css';
+    composes: shake-horizontal shake-constant shake-constant--hover from 'csshake/dist/csshake.css';
 }
