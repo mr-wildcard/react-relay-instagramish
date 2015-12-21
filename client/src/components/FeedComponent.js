@@ -8,7 +8,7 @@ class FeedComponent extends React.Component {
 
     render() {
         return (
-            <div className="root">
+            <div styleName="root">
                 Please edit src/components///FeedComponent.js to update this component!
             </div>
         );

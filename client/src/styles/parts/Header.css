@@ -1,3 +1,20 @@
 .root {
-    composes: ui top fixed menu from 'semantic';
+    composes: ui segment from 'semantic';
+    position: fixed !important;
+    width: 100% !important;
+    text-align: center;
+    border: 0 !important;
+    border-radius: 0 !important;
+}
+
+.menu {
+    composes: ui compact secondary menu from 'semantic';
+}
+
+.first-item {
+    composes: header item from 'semantic';
+}
+
+.item {
+    composes: item from 'semantic';
 }

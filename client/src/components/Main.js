@@ -8,11 +8,11 @@ import { loggedIn } from '../AppState';
 class AppComponent extends React.Component {
 
     handleLogingIn() {
-        this.props.history.pushState(null, 'feed');
+        this.context.history.pushState(null, 'feed');
     }
 
     get composedChildren() {
-        
+
         return (
             <div>
                 <Header />
@@ -33,5 +33,9 @@ class AppComponent extends React.Component {
         );
     }
 }
+
+AppComponent.contextTypes = {
+    history: React.PropTypes.object
+};
 
 export default CSSModules(AppComponent, styles);

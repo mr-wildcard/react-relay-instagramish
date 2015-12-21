@@ -1,0 +1,4 @@
+.page {
+    composes: ui container from 'semantic';
+    padding-top: 100px;
+}

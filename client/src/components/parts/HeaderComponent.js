@@ -3,12 +3,17 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
 import styles from 'styles/parts/Header.css';
+import { appState } from '../../AppState';
 
-const HeaderComponent = (props) => {
+const HeaderComponent = () => {
 
     return (
         <div styleName="root">
-            Please edit src/components/parts//HeaderComponent.js to update this component!
+            <div styleName="menu">
+                <div styleName="first-item">Hello&nbsp;{appState.get('nickname')} !</div>
+                <a styleName="item">Feed</a>
+                <a styleName="item">Take a selfie !</a>
+            </div>
         </div>
     );
 

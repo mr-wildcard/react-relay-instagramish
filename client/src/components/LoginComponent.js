@@ -3,7 +3,6 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
 import cs from 'classnames';
-import { createLocation } from 'history'
 import styles from 'styles/Login.css';
 import { login } from '../AppState';
 
