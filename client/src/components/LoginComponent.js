@@ -64,7 +64,7 @@ class LoginComponent extends React.Component {
                     <div styleName={inputWrapperCSSClassnames} >
                         <input styleName={inputCSSClassnames} ref="nickname" type="text" placeholder="Nickname..." onChange={this.handleChange.bind(this)} />
                     </div>
-                    <input type="submit" value="Login" styleName="button" />
+                    <input type="submit" value="Login" styleName="button" maxlength="10" />
                 </form>
             </div>
         );

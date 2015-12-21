@@ -10,8 +10,8 @@ const HeaderComponent = () => {
     return (
         <div styleName="root">
             <div styleName="menu">
-                <div styleName="first-item">Hello&nbsp;{appState.get('nickname')} !</div>
-                <a styleName="item">Feed</a>
+                <div styleName="first-item">Hello&nbsp;{appState.get('nickname')}&nbsp;!</div>
+                <a styleName="item-active">Feed</a>
                 <a styleName="item">Take a selfie !</a>
             </div>
         </div>

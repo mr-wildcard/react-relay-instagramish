@@ -1,3 +1,7 @@
 .root {
     composes: page from './shared.css';
 }
+
+.cards {
+    composes: ui cards from 'semantic';
+}

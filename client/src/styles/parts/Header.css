@@ -5,16 +5,24 @@
     text-align: center;
     border: 0 !important;
     border-radius: 0 !important;
+    z-index: 2;
 }
 
 .menu {
+    composes: ui container from 'semantic';
     composes: ui compact secondary menu from 'semantic';
+    margin-left: 0 !important;
 }
 
 .first-item {
     composes: header item from 'semantic';
+    padding-left: 0 !important;
 }
 
 .item {
     composes: item from 'semantic';
+}
+
+.item-active {
+    composes: item active from 'semantic';
 }

@@ -1,3 +1,43 @@
-.feeditem-component {
-  border: 1px dashed #f00;
+.root {
+    composes: ui fluid card from 'semantic';
+}
+
+.content {
+    composes: content from 'semantic';
+}
+
+.meta {
+    composes: meta from 'semantic';
+}
+
+.avatar {
+    composes: ui avatar image from 'semantic';
+}
+
+.selfie-img {
+    composes: image from 'semantic';
+}
+
+.selfie {
+    composes: ui bordered image from 'semantic';
+}
+
+.likes-icon {
+    composes: heart outline like icon from 'semantic';
+}
+
+.comment-icon {
+    composes: comment icon from 'semantic';
+}
+
+.extra-content {
+    composes: extra content from 'semantic';
+}
+
+.comment-area {
+    composes: ui large transparent left icon input from 'semantic';
+}
+
+.heart-icon {
+    composes: heart outline icon from 'semantic';
 }
