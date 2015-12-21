@@ -2,17 +2,21 @@
 
 import React from 'react';
 import CSSModules from 'react-css-modules';
+import { Link } from 'react-router';
 import styles from 'styles/parts/Header.css';
 import { appState } from '../../AppState';
 
-const HeaderComponent = () => {
+
+const HeaderComponent = (props) => {
+
+    const itemCSSClassname = (itemName) => itemName == props.pathname ? 'item-active' : 'item';
 
     return (
         <div styleName="root">
             <div styleName="menu">
                 <div styleName="first-item">Hello&nbsp;{appState.get('nickname')}&nbsp;!</div>
-                <a styleName="item-active">Feed</a>
-                <a styleName="item">Take a selfie !</a>
+                <Link to="feed" styleName={itemCSSClassname('feed')}>Feed</Link>
+                <Link to="selfie" styleName={itemCSSClassname('selfie')}>Take a selfie !</Link>
             </div>
         </div>
     );
@@ -20,5 +24,8 @@ const HeaderComponent = () => {
 };
 
 HeaderComponent.displayName = 'PartsHeaderComponent';
+HeaderComponent.propTypes = {
+    pathname: React.PropTypes.string.isRequired
+};
 
 export default CSSModules(HeaderComponent, styles);

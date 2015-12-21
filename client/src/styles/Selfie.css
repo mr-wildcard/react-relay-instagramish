@@ -1,1 +1,3 @@
-.root{}
+.root{
+    composes: page from './shared.css';
+}

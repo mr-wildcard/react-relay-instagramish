@@ -8,15 +8,17 @@ import { loggedIn } from '../AppState';
 class AppComponent extends React.Component {
 
     handleLogingIn() {
+        console.log(this);
         this.context.history.pushState(null, 'feed');
     }
 
     get composedChildren() {
 
+        const { location } = this.props;
+
         return (
             <div>
-                <Header />
-
+                <Header pathname={location.pathname} />
                 {this.props.children}
             </div>
         )
