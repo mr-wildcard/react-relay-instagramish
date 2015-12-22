@@ -12,6 +12,13 @@
     composes: content from 'semantic';
     height: 320px;
     background: #fff url(../images/camera_1x.png) no-repeat center center !important;
+    padding: 0 !important;
+}
+
+.selfie {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
 }
 
 .extra-content {

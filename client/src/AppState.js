@@ -2,8 +2,8 @@ import { Map } from 'immutable';
 
 // Look ma, i'm a immutable state !
 const initialState = Map({
-    router: null,
-    nickname: ''
+    nickname: '',
+    currentTakenPicture: null
 });
 
 export let appState = initialState;
