@@ -1,27 +1,34 @@
 .root {
     composes: ui segment from 'semantic';
-    text-align: center;
     border: 0 !important;
     border-radius: 0 !important;
-    z-index: 2;
     margin: 0 !important;
 }
 
-.menu {
+.wrapper {
     composes: ui container from 'semantic';
+}
+
+.menu {
     composes: ui compact secondary menu from 'semantic';
-    margin-left: 0 !important;
+}
+
+.logo {
+    margin-right: 15px !important;
 }
 
 .first-item {
     composes: header item from 'semantic';
-    padding-left: 0 !important;
 }
 
 .item {
     composes: item from 'semantic';
 }
 
-.item-active {
-    composes: item active from 'semantic';
+.button {
+    composes: ui basic button from 'semantic';
+}
+
+.button-active {
+    composes: ui primary button from 'semantic';
 }
