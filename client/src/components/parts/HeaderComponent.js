@@ -5,8 +5,6 @@ import CSSModules from 'react-css-modules';
 import { Link } from 'react-router';
 import styles from 'styles/parts/Header.css';
 import logo from '../../images/logo.jpg';
-import { appState } from '../../AppState';
-
 
 const HeaderComponent = (props) => {
 

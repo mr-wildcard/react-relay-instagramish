@@ -1,14 +1,13 @@
 import 'core-js/fn/object/assign';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { RelayRouter } from 'react-router-relay';
-import { Router, Route, IndexRoute } from 'react-router';
+//import { RelayRouter } from 'react-router-relay';
+import { Router, Route } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 import App from './Main';
-import Login from './LoginComponent';
 import Feed from './FeedComponent';
 import Selfie from './SelfieComponent';
-import { appState, loggedIn } from '../AppState';
+//import { appState, loggedIn } from '../AppState';
 
 ReactDOM.render((
     <Router history={createBrowserHistory()}>

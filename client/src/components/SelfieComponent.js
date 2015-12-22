@@ -41,7 +41,7 @@ class SelfieComponent extends React.Component {
     }
 
     handleSave() {
-        console.log('Let the magic happen...');
+        return console.log('Let the magic happens...');
     }
 
     render() {
