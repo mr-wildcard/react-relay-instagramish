@@ -10,24 +10,18 @@ import { appState } from '../../AppState';
 
 const HeaderComponent = (props) => {
 
-    const itemCSSClassname = (itemName) => itemName == props.pathname ? 'button-active' : 'button';
+    const itemCSSClassname = (itemName) => `item ${itemName == props.pathname ? 'active' : ''}`;
 
     return (
         <div styleName="root">
-            <div styleName="wrapper">
                 <div styleName="menu">
                     <div styleName="first-item">
                         <img src={logo} styleName="logo" />
-                        <span>Hello {appState.get('nickname')} !</span>
+                        {/*<span>Hello {appState.get('nickname')} !</span>*/}
                     </div>
-                    <div styleName="item">
-                        <Link to="feed" styleName={itemCSSClassname('feed')}>Feed</Link>
-                    </div>
-                    <div styleName="item">
-                        <Link to="selfie" styleName={itemCSSClassname('selfie')}>Take a selfie !</Link>
-                    </div>
+                    <Link to="feed" styleName={itemCSSClassname('feed')}>Feed</Link>
+                    <Link to="selfie" styleName={itemCSSClassname('selfie')}>Take a selfie !</Link>
                 </div>
-            </div>
         </div>
     );
 
@@ -38,4 +32,4 @@ HeaderComponent.propTypes = {
     pathname: React.PropTypes.string.isRequired
 };
 
-export default CSSModules(HeaderComponent, styles);
+export default CSSModules(HeaderComponent, styles, { allowMultiple: true });

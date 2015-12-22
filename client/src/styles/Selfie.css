@@ -5,11 +5,12 @@
 
 .card {
     composes: ui fluid card from 'semantic';
+    margin: 0 !important;
 }
 
 .content {
     composes: content from 'semantic';
-    height: 400px;
+    height: 320px;
     background: #fff url(../images/camera_1x.png) no-repeat center center !important;
 }
 

@@ -1,5 +1,4 @@
 .root {
-    composes: ui segment from 'semantic';
     border: 0 !important;
     border-radius: 0 !important;
     margin: 0 !important;
@@ -10,11 +9,13 @@
 }
 
 .menu {
-    composes: ui compact secondary menu from 'semantic';
+    composes: ui large menu from 'semantic';
+    border: 0 !important;
+    border-radius: 0 !important;
 }
 
 .logo {
-    margin-right: 15px !important;
+    /*margin-right: 15px !important;*/
 }
 
 .first-item {
@@ -25,10 +26,7 @@
     composes: item from 'semantic';
 }
 
-.button {
-    composes: ui basic button from 'semantic';
-}
-
-.button-active {
-    composes: ui primary button from 'semantic';
+.active {
+    background-color: #00B5AD !important;
+    color: #fff !important;
 }
