@@ -1,0 +1,24 @@
+{
+  "name": "react-relay-instagramish-server",
+  "version": "1.0.0",
+  "description": "Server side",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mr-wildcard/react-relay-instagramish.git"
+  },
+  "keywords": [
+    "Koa",
+    "GraphQL"
+  ],
+  "author": "Julien Viala <dev.vialajulien@gmail.com> (https://github.com/mr-wildcard)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mr-wildcard/react-relay-instagramish/issues"
+  },
+  "homepage": "https://github.com/mr-wildcard/react-relay-instagramish#readme"
+}
