@@ -17,9 +17,12 @@ class AppComponent extends React.Component {
         const { location } = this.props;
 
         return (
-            <div>
+            <div styleName="wrapper">
                 <Header pathname={location.pathname} />
-                {this.props.children}
+
+                <div styleName="page-wrapper">
+                    {this.props.children}
+                </div>
             </div>
         )
     }

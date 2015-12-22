@@ -1,11 +1,10 @@
 .root {
     composes: ui segment from 'semantic';
-    position: fixed !important;
-    width: 100% !important;
     text-align: center;
     border: 0 !important;
     border-radius: 0 !important;
     z-index: 2;
+    margin: 0 !important;
 }
 
 .menu {
