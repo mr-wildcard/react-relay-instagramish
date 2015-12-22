@@ -8,4 +8,5 @@
 
 .page-wrapper {
     height: calc(100% - 68px);
+    overflow-y: auto;
 }

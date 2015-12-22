@@ -9,16 +9,20 @@ class SelfieComponent extends React.Component {
     render() {
         return (
             <div styleName="root">
-                Please edit src/components///SelfieComponent.js to update this component!
+                <div styleName="card">
+                    <div styleName="content"></div>
+                    <div styleName="extra-content">
+                        <div styleName="buttons">
+                            <div styleName="save-button">Publier</div>
+                            <div styleName="cancel-button">Annuler</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
 }
 
 SelfieComponent.displayName = 'SelfieComponent';
-
-// Uncomment properties you need
-// SelfieComponent.propTypes = {};
-// SelfieComponent.defaultProps = {};
 
 export default CSSModules(SelfieComponent, styles);

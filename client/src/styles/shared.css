@@ -1,4 +1,4 @@
 .page {
     composes: ui container from 'semantic';
-    margin: 25px 0;
+    margin: 25px 0 !important;
 }
