@@ -1,19 +1,23 @@
-import 'core-js/fn/object/assign';
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import { RelayRouter } from 'react-router-relay';
+import Relay from 'react-relay';
+import { RelayRouter } from 'react-router-relay';
 import { Router, Route } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 import App from './Main';
 import Feed from './FeedComponent';
 import Selfie from './SelfieComponent';
-//import { appState, loggedIn } from '../AppState';
+import ViewerQueries from '../queries/ViewerQueries';
+
+Relay.injectNetworkLayer(
+    new Relay.DefaultNetworkLayer('http://localhost:3000/graphql')
+);
 
 ReactDOM.render((
-    <Router history={createBrowserHistory()}>
+    <RelayRouter history={createBrowserHistory()}>
         <Route path="/" component={App}>
-            <Route path="feed" component={Feed} />
+            <Route path="feed" component={Feed} queries={ViewerQueries} />
             <Route path="selfie" component={Selfie} />
         </Route>
-    </Router>
+    </RelayRouter>
 ), document.getElementById('app'));

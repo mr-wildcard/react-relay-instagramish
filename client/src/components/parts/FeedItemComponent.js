@@ -1,25 +1,33 @@
 'use strict';
 
 import React from 'react';
+import Relay from 'react-relay';
 import CSSModules from 'react-css-modules';
 import styles from 'styles/parts/FeedItem.css';
-import yuna from '../../images/love.jpg';
 
-const FeedItemComponent = () => {
+const FeedItemComponent = (props) => {
+
+    console.log(props);
+
+    const {
+        author,
+        src,
+        likesCount
+    } = props.selfie;
 
     return (
         <div styleName="root">
             <div styleName="content">
                 <div styleName="meta" className="right floated">14h</div>
-                Elliot
+                {author}
             </div>
             <div styleName="selfie-img">
-                <img styleName="selfie" src={yuna} />
+                <img styleName="selfie" src={src} />
             </div>
             <div styleName="content">
                 <span className="right floated">
-                  <i styleName="likes-icon"></i>
-                  17 likes
+                    <i styleName="likes-icon"></i>
+                    {likesCount} likes
                 </span>
             </div>
         </div>
@@ -28,4 +36,18 @@ const FeedItemComponent = () => {
 
 FeedItemComponent.displayName = 'PartsFeedItemComponent';
 
-export default CSSModules(FeedItemComponent, styles);
+const CSSModulifiedComponent = CSSModules(FeedItemComponent, styles);
+
+export default Relay.createContainer(CSSModulifiedComponent, {
+
+    fragments: {
+        selfie: () => Relay.QL`
+            fragment on Selfie {
+                author,
+                src,
+                likesCount
+            }
+            `
+    }
+});
+
