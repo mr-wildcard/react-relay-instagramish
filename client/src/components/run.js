@@ -17,7 +17,7 @@ ReactDOM.render((
     <RelayRouter history={createBrowserHistory()}>
         <Route path="/" component={App}>
             <Route path="feed" component={Feed} queries={ViewerQueries} />
-            <Route path="selfie" component={Selfie} />
+            <Route path="selfie" component={Selfie} queries={ViewerQueries} />
         </Route>
     </RelayRouter>
 ), document.getElementById('app'));

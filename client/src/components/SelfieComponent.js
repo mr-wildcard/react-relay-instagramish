@@ -1,9 +1,11 @@
 'use strict';
 
 import React from 'react';
+import Relay from 'react-relay';
 import CSSModules from 'react-css-modules';
 import styles from 'styles/Selfie.css';
 import { appState } from '../AppState';
+import AddSelfieMutation from '../queries/AddSelfieMutation';
 
 class SelfieComponent extends React.Component {
 
@@ -41,7 +43,13 @@ class SelfieComponent extends React.Component {
     }
 
     handleSave() {
-        return console.log('Let the magic happens...');
+
+        Relay.Store.update(
+            new AddSelfieMutation({
+                author: appState.get('nickname'),
+                src: this.state.currentTakenPicture
+            })
+        );
     }
 
     render() {
@@ -78,4 +86,15 @@ class SelfieComponent extends React.Component {
 
 SelfieComponent.displayName = 'SelfieComponent';
 
-export default CSSModules(SelfieComponent, styles);
+const CSSModulifiedComponent = CSSModules(SelfieComponent, styles);
+
+export default Relay.createContainer(CSSModulifiedComponent, {
+
+    fragments: {
+        selfie: () => Relay.QL`
+            fragment on User {
+                ${AddSelfieMutation.getFragment('viewer')}
+            }
+            `
+    }
+});
