@@ -2,10 +2,13 @@
 
 import koa from 'koa';
 import mount from 'koa-mount';
+import cors from 'koa-cors';
 import graphqlHTTP from 'koa-graphql';
 import graphQLSchema from './data/schema';
 
 let app = koa();
+
+app.use(cors());
 
 app.use(
     mount('/graphql', graphqlHTTP({
