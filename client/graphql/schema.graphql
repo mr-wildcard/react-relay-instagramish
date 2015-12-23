@@ -1,0 +1,16 @@
+interface Node {
+  id: ID!
+}
+
+type Selfie implements Node {
+  id: ID!
+  author: String
+  src: String
+  likesCount: Int
+}
+
+type SelfieQuery {
+  id: ID!
+  node(id: ID!): Node
+  selfies: [Selfie]
+}

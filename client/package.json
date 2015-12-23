@@ -84,5 +84,10 @@
         "react-router": "^1.0.2",
         "react-router-relay": "^0.8.0",
         "semantic-ui": "^2.1.6"
+  "metadata": {
+    "graphql": {
+      "schema": "./graphql/schema.json"
     }
+  },
+    "babel-relay-plugin-loader": "^0.6.1",
 }
