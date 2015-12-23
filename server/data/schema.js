@@ -1,7 +1,7 @@
 import {
     GraphQLSchema,
     GraphQLObjectType,
-    GraphQLString
+    GraphQLString,
     GraphQLInt
 } from 'graphql';
 
@@ -43,7 +43,8 @@ var selfieType = new GraphQLObjectType({
         },
         src: {
             type: GraphQLString,
-            description: 'Src of selfie. Can be URL or base64 representation.'
+            description: 'Src of selfie image. Can be URL or base64 representation.'
+        },
         likesCount: {
             type: GraphQLInt,
             description: 'Total number of likes'
