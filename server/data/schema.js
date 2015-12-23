@@ -117,7 +117,7 @@ var addSelfieMutation = mutationWithClientMutationId({
     },
     outputFields: {
         selfieEdge: {
-            type: selfieType,
+            type: GraphQLSelfieEdge,
             resolve: ({ localSelfieId }) => {
 
                 var selfie = db.getSelfie(localSelfieId);
@@ -150,7 +150,7 @@ var Root = new GraphQLObjectType({
 var Mutation = new GraphQLObjectType({
     name: 'Mutation',
     fields: {
-        addTodo: addSelfieMutation
+        addSelfie: addSelfieMutation
     }
 });
 
