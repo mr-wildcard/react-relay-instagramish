@@ -36,5 +36,13 @@ export default {
 
     getUser: () => defaultUser,
     getSelfies: () => selfies,
-    getSelfie: (id) => find(selfies, { id: id })
+    getSelfie: (id) => find(selfies, { id: id }),
+    addSelfie: (author, src) => {
+        
+        selfies.unshift( new Selfie(
+            selfies.length + 1,
+            author,
+            src
+        ))
+    }
 }

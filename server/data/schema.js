@@ -3,7 +3,8 @@ import {
     GraphQLObjectType,
     GraphQLString,
     GraphQLInt,
-    GraphQLList
+    GraphQLList,
+    GraphQLNonNull
 } from 'graphql';
 
 import {
@@ -11,7 +12,9 @@ import {
     fromGlobalId,
     globalIdField,
     connectionFromArray,
-    connectionDefinitions
+    connectionDefinitions,
+    mutationWithClientMutationId,
+    cursorForObjectInConnection
 } from 'graphql-relay';
 
 import db from './db';
@@ -100,6 +103,39 @@ const userType = new GraphQLObjectType({
     interfaces: [ nodeInterface ]
 });
 
+
+var addSelfieMutation = mutationWithClientMutationId({
+    name: 'AddSelfie',
+
+    inputFields: {
+        src: {
+            type: new GraphQLNonNull(GraphQLString)
+        },
+        author: {
+            type: new GraphQLNonNull(GraphQLString)
+        }
+    },
+    outputFields: {
+        selfieEdge: {
+            type: selfieType,
+            resolve: ({ localSelfieId }) => {
+
+                var selfie = db.getSelfie(localSelfieId);
+
+                return {
+                    cursor: cursorForObjectInConnection(db.getSelfies(), selfie),
+                    node: selfie
+                };
+            }
+        },
+        viewer: {
+            type: userType,
+            resolve: () => db.getUser()
+        }
+    },
+    mutateAndGetPayload: ({ author, src }) =>  db.addSelfie(author, src)
+});
+
 var Root = new GraphQLObjectType({
     name: 'Root',
     fields: () => ({
@@ -111,6 +147,14 @@ var Root = new GraphQLObjectType({
     })
 });
 
+var Mutation = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+        addTodo: addSelfieMutation
+    }
+});
+
 export default new GraphQLSchema({
-    query: Root
+    query: Root,
+    mutation: Mutation
 });
