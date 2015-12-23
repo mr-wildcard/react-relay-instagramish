@@ -7,8 +7,6 @@ import styles from 'styles/parts/FeedItem.css';
 
 const FeedItemComponent = (props) => {
 
-    console.log(props);
-
     const {
         author,
         src,

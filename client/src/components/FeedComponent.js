@@ -10,7 +10,6 @@ class FeedComponent extends React.Component {
 
     render() {
 
-        console.log('feed:', this.props);
         const { viewer } = this.props;
 
         return (
