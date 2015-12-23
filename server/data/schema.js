@@ -21,13 +21,25 @@ const { nodeInterface, nodeField } = nodeDefinitions(
 
         var idInfo = fromGlobalId(globalId);
 
-        console.log(idInfo.type);
+        switch (idInfo.type) {
 
-        if (idInfo.type == 'Selfie') {
-            return db.getSelfie(idInfo.id);
+            case 'Selfie' : return db.getSelfie(idInfo.id);
+            case 'User': return db.getUser();
+
+            default: return null;
+                break;
         }
+    },
+    (obj) => {
 
-        return null;
+        switch (true) {
+
+            case obj instanceof db.Selfie : return selfieType;
+            case obj instanceof db.User: return userType;
+
+            default: return null;
+                break;
+        }
     }
 );
 
@@ -42,39 +54,63 @@ const selfieType = new GraphQLObjectType({
         id: globalIdField('Selfie'),
         author: {
             type: GraphQLString,
-            description: 'Author (nickname) of the selfie'
+            description: 'Author (nickname) of the selfie',
+            resolve: (obj) => obj.author
         },
         src: {
             type: GraphQLString,
-            description: 'Src of selfie image. Can be URL or base64 representation.'
+            description: 'Src of selfie image. Can be URL or base64 representation.',
+            resolve: (obj) => obj.src
         },
         likesCount: {
             type: GraphQLInt,
-            description: 'Total number of likes'
+            description: 'Total number of likes',
+            resolve: (obj) => obj.likesCount
         }
     },
     interfaces: [ nodeInterface ]
 });
 
 const {
-    connectionType: SelfieConnection,
-    edgeType: GraphQLSelfieEdge
-} = connectionDefinitions({
+        connectionType: SelfiesConnection,
+        edgeType: GraphQLSelfieEdge
+    } = connectionDefinitions({
     name: 'Selfie',
     nodeType: selfieType
 });
 
-export default new GraphQLSchema({
+const userType = new GraphQLObjectType({
 
-    query: new GraphQLObjectType({
-        name: 'SelfieQuery',
-        fields: {
-            id: globalIdField('Selfie'),
-            node: nodeField,
-            selfies: {
-                type: new GraphQLList(selfieType),
-                resolve: () => db.selfies
-            }
+    name: 'User',
+    description: "Dummy (?) type to allow fetching array of selfies",
+
+    isTypeOf: (obj) => obj instanceof db.User,
+
+    fields: {
+        id: globalIdField('User'),
+        selfies: {
+            type: SelfiesConnection,
+            resolve: (obj, {...args}) => connectionFromArray(db.getSelfies(), args)
+        },
+        totalCount: {
+            type: GraphQLInt,
+            resolve: () => db.getSelfies().length
         }
+    },
+    interfaces: [ nodeInterface ]
+});
+
+var Root = new GraphQLObjectType({
+    name: 'Root',
+    fields: () => ({
+        viewer: {
+            type: userType,
+            resolve: () => db.getUser()
+        },
+        node: nodeField
     })
+});
+
+export default new GraphQLSchema({
+    query: Root
 });

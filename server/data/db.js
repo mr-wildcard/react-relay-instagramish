@@ -24,10 +24,17 @@ function Selfie(id, author, src, likesCount) {
     this.likesCount = likesCount;
 }
 
+function User(id) {
+    this.id = id;
+}
+
+const defaultUser = new User('me');
+
 export default {
-
     Selfie,
-    selfies,
+    User,
 
-    getSelfie(id) { return find(selfies, { id: id }) }
+    getUser: () => defaultUser,
+    getSelfies: () => selfies,
+    getSelfie: (id) => find(selfies, { id: id })
 }
