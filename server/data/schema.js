@@ -2,13 +2,16 @@ import {
     GraphQLSchema,
     GraphQLObjectType,
     GraphQLString,
-    GraphQLInt
+    GraphQLInt,
+    GraphQLList
 } from 'graphql';
 
 import {
     nodeDefinitions,
     fromGlobalId,
-    globalIdField
+    globalIdField,
+    connectionFromArray,
+    connectionDefinitions
 } from 'graphql-relay';
 
 import db from './db';
@@ -28,12 +31,12 @@ const { nodeInterface, nodeField } = nodeDefinitions(
     }
 );
 
-var selfieType = new GraphQLObjectType({
+const selfieType = new GraphQLObjectType({
 
     name: 'Selfie',
     description: 'A selfie',
 
-    isTypeOf(obj) { return obj instanceof db.Selfie },
+    isTypeOf: (obj) => obj instanceof db.Selfie,
 
     fields: {
         id: globalIdField('Selfie'),
@@ -53,18 +56,24 @@ var selfieType = new GraphQLObjectType({
     interfaces: [ nodeInterface ]
 });
 
+const {
+    connectionType: SelfieConnection,
+    edgeType: GraphQLSelfieEdge
+} = connectionDefinitions({
+    name: 'Selfie',
+    nodeType: selfieType
+});
+
 export default new GraphQLSchema({
 
     query: new GraphQLObjectType({
-        name: 'Query',
+        name: 'SelfieQuery',
         fields: {
-
+            id: globalIdField('Selfie'),
             node: nodeField,
-            selfie: {
-                type: selfieType,
-                resolve() {
-                    return db.getSelfie(0)
-                }
+            selfies: {
+                type: new GraphQLList(selfieType),
+                resolve: () => db.selfies
             }
         }
     })
