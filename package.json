@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/mr-wildcard/react-relay-instagramish/issues"
   },
-  "homepage": "https://github.com/mr-wildcard/react-relay-instagramish#readme"
+  "homepage": "https://github.com/mr-wildcard/react-relay-instagramish#readme",
+  "dependencies": {
+    "lodash.find": "^3.2.1"
+  }
 }
