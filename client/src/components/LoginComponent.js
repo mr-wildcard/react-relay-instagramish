@@ -59,7 +59,7 @@ class LoginComponent extends React.Component {
             <div styleName="root">
                 <form onSubmit={this.handleSubmit.bind(this)}>
                     <h2 styleName="title">My name is...</h2>
-                    <div styleName={inputWrapperCSSClassnames} >
+                    <div styleName={inputWrapperCSSClassnames}>
                         <input styleName={inputCSSClassnames} ref="nickname" type="text" placeholder="Nickname..." pattern="[a-zA-Z0-9]+" onChange={this.handleChange.bind(this)} />
                     </div>
                     <input type="submit" value="Login" styleName="button" />
