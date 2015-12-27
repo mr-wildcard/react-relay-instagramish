@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Relay from 'react-relay';
 import { RelayRouter } from 'react-router-relay';
-import { Router, Route } from 'react-router';
+import { Route } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 import App from './Main';
 import Feed from './FeedComponent';
