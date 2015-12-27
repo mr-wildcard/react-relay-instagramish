@@ -1,6 +1,7 @@
 import Relay from 'react-relay';
+import RelayMutationType from 'react-relay';
 
-export default class AddSelfieMutation extends Relay.Mutation {
+class AddSelfieMutation extends Relay.Mutation {
 
     static fragments = {
         viewer: () => Relay.QL`
@@ -19,17 +20,47 @@ export default class AddSelfieMutation extends Relay.Mutation {
         return Relay.QL`
             fragment on AddSelfiePayload {
                 selfieEdge,
-                    viewer {
-                        selfies,
-                        totalCount
-                },
+                viewer {
+                    selfies,
+                    totalCount
+                }
             }
         `;
     }
 
+    getConfigs() {
+        return [{
+            type: RelayMutationType.RANGE_ADD,
+            parentName: 'viewer',
+            parentID: this.props.viewer.id,
+            connectionName: 'selfies',
+            edgeName: 'selfieEdge'
+        }];
+    }
+
     getVariables() {
         return {
-            text: this.props.text
+            author: this.props.author,
+            src: this.props.src
+        };
+    }
+
+    getOptimisticResponse() {
+
+        return {
+
+            selfieEdge: {
+                node: {
+                    author: '',
+                    src: this.props.src,
+                    likesCount: this.props.likesCount
+                }
+            },
+            viewer: {
+                id: this.props.viewer.id
+            }
         };
     }
 }
+
+export default AddSelfieMutation;
