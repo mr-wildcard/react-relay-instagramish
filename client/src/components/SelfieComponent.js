@@ -14,7 +14,8 @@ class SelfieComponent extends React.Component {
         super();
 
         this.state = {
-            currentTakenPicture: null
+            currentTakenPicture: appState.get('currentTakenPicture'),
+            convertingToBase64: false
         }
     }
 
@@ -25,11 +26,24 @@ class SelfieComponent extends React.Component {
     imageChanged() {
 
         if (this.refs.UploadInput.files.length) {
+
             this.setState({
-                currentTakenPicture: window.URL.createObjectURL( this.refs.UploadInput.files[0] )
-            }, () => {
-                appState.set('currentTakenPicture', this.setState.currentTakenPicture);
+                convertingToBase64: true
             });
+
+            let reader = new FileReader();
+
+            reader.onloadend = ({ target }) => {
+
+                this.setState({
+                        currentTakenPicture: target.result,
+                        convertingToBase64: false
+                    },
+                    () => appState.set('currentTakenPicture', target.result)
+                );
+            };
+
+            reader.readAsDataURL( this.refs.UploadInput.files[0] );
         }
     }
 
@@ -47,14 +61,15 @@ class SelfieComponent extends React.Component {
         Relay.Store.update(
             new AddSelfieMutation({
                 author: appState.get('nickname'),
-                src: this.state.currentTakenPicture
+                src: appState.get('currentTakenPicture'),
+                viewer: this.props.viewer
             })
         );
     }
 
     render() {
 
-        const { currentTakenPicture } = this.state;
+        const { currentTakenPicture, convertingToBase64 } = this.state;
 
         return (
             <div styleName="root">
@@ -64,7 +79,7 @@ class SelfieComponent extends React.Component {
                         {currentTakenPicture && <img src={currentTakenPicture} styleName='selfie' ref="TakenPicture" />}
                     </div>
 
-                    {currentTakenPicture &&
+                    {currentTakenPicture && !convertingToBase64 &&
                         <div styleName="extra-content">
                             <div styleName="buttons">
                                 <div styleName="save-button" onClick={this.handleSave.bind(this)}>Publier</div>
@@ -76,8 +91,12 @@ class SelfieComponent extends React.Component {
 
 
                 <form>
-                    <input onChange={this.imageChanged.bind(this)} ref="UploadInput"
-                           style={{position: 'absolute', left: '-10000px'}} type="file" accept="image/*"/>
+                    <input onChange={this.imageChanged.bind(this)}
+                           ref="UploadInput"
+                           style={{position: 'absolute', left: '-10000px'}}
+                           type="file"
+                           accept="image/*"
+                    />
                 </form>
             </div>
         );
@@ -91,7 +110,7 @@ const CSSModulifiedComponent = CSSModules(SelfieComponent, styles);
 export default Relay.createContainer(CSSModulifiedComponent, {
 
     fragments: {
-        selfie: () => Relay.QL`
+        viewer: () => Relay.QL`
             fragment on User {
                 ${AddSelfieMutation.getFragment('viewer')}
             }
