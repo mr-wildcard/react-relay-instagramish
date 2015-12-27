@@ -10,14 +10,13 @@ var selfies = [
     {
         id: 1,
         author: 'Leo',
-        src: 'https://i.ytimg.com/vi/cHgIQYvv9kk/hqdefault.jpg',
-        likesCount: 0
+        src: 'https://i.ytimg.com/vi/cHgIQYvv9kk/hqdefault.jpg'
     }
 ];
 
 selfies = selfies.map(obj => new Selfie(obj.id, obj.author, obj.src, obj.likesCount));
 
-function Selfie(id, author, src, likesCount) {
+function Selfie(id, author, src, likesCount = 0) {
     this.id = id;
     this.author = author;
     this.src = src;
