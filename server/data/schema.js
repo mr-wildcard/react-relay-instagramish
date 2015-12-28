@@ -86,7 +86,7 @@ const {
 const userType = new GraphQLObjectType({
 
     name: 'User',
-    description: "Dummy (?) type to allow fetching array of selfies",
+    description: "Dummy (rly?) type to allow fetching array of selfies",
 
     isTypeOf: (obj) => obj instanceof db.User,
 
