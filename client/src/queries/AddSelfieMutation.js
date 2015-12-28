@@ -30,7 +30,7 @@ class AddSelfieMutation extends Relay.Mutation {
 
     getConfigs() {
         return [{
-            type: RelayMutationType.RANGE_ADD,
+            type: 'RANGE_ADD',
             parentName: 'viewer',
             parentID: this.props.viewer.id,
             connectionName: 'selfies',
