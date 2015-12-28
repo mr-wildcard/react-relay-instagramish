@@ -8,12 +8,6 @@ const initialState = Map({
 
 let appState = initialState;
 
-const updateAppState = (key, value) => appState = appState.set(key, value);
-const loggedIn = () => appState.get('nickname').length > 0;
-
-export default {
-    appState,
-
-    updateAppState,
-    loggedIn
-}
+export const getAppState = (key) => appState.get(key);
+export const updateAppState = (key, value) => appState = appState.set(key, value);
+export const loggedIn = () => appState.get('nickname').length > 0;

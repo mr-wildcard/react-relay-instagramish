@@ -4,7 +4,7 @@ import React from 'react';
 import Relay from 'react-relay';
 import CSSModules from 'react-css-modules';
 import styles from 'styles/Selfie.css';
-import { appState, updateAppState } from '../AppState';
+import { getAppState, updateAppState } from '../AppState';
 import AddSelfieMutation from '../queries/AddSelfieMutation';
 
 class SelfieComponent extends React.Component {
@@ -14,7 +14,7 @@ class SelfieComponent extends React.Component {
         super();
 
         this.state = {
-            currentTakenPicture: appState.get('currentTakenPicture'),
+            currentTakenPicture: getAppState('currentTakenPicture'),
             convertingToBase64: false
         }
     }
@@ -62,8 +62,8 @@ class SelfieComponent extends React.Component {
 
         Relay.Store.update(
             new AddSelfieMutation({
-                author: appState.get('nickname'),
-                src: appState.get('currentTakenPicture'),
+                author: getAppState('nickname'),
+                src: getAppState('currentTakenPicture'),
                 viewer: this.props.viewer
             })
         );
