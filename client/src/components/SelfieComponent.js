@@ -4,7 +4,7 @@ import React from 'react';
 import Relay from 'react-relay';
 import CSSModules from 'react-css-modules';
 import styles from 'styles/Selfie.css';
-import { appState } from '../AppState';
+import { appState, updateAppState } from '../AppState';
 import AddSelfieMutation from '../queries/AddSelfieMutation';
 
 class SelfieComponent extends React.Component {
@@ -39,7 +39,9 @@ class SelfieComponent extends React.Component {
                         currentTakenPicture: target.result,
                         convertingToBase64: false
                     },
-                    () => appState.set('currentTakenPicture', target.result)
+                    () => {
+                        updateAppState('currentTakenPicture', target.result);
+                    }
                 );
             };
 
@@ -52,7 +54,7 @@ class SelfieComponent extends React.Component {
         this.setState({
             currentTakenPicture: null
         }, () => {
-            appState.set('currentTakenPicture', null);
+            updateAppState('currentTakenPicture', null);
         });
     }
 

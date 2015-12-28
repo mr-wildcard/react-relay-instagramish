@@ -4,7 +4,7 @@ import React from 'react';
 import CSSModules from 'react-css-modules';
 import cs from 'classnames';
 import styles from 'styles/Login.css';
-import { login } from '../AppState';
+import { updateAppState } from '../AppState';
 
 class LoginComponent extends React.Component {
 
@@ -37,8 +37,7 @@ class LoginComponent extends React.Component {
         }, () => {
 
             if (!this.state.error) {
-
-                login(nickname);
+                updateAppState('nickname', nickname);
                 this.props.onLoggedInHandler();
             }
         });
