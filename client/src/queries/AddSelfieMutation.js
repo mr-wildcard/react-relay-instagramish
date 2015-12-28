@@ -34,7 +34,10 @@ class AddSelfieMutation extends Relay.Mutation {
             parentName: 'viewer',
             parentID: this.props.viewer.id,
             connectionName: 'selfies',
-            edgeName: 'selfieEdge'
+            edgeName: 'selfieEdge',
+            rangeBehaviors: {
+                '': 'append'
+            }
         }];
     }
 
