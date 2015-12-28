@@ -58,17 +58,17 @@ const selfieType = new GraphQLObjectType({
         author: {
             type: GraphQLString,
             description: 'Author (nickname) of the selfie',
-            resolve: (obj) => obj.author
+            resolve: ({ author }) => author
         },
         src: {
             type: GraphQLString,
             description: 'Src of selfie image. Can be URL or base64 representation.',
-            resolve: (obj) => obj.src
+            resolve: ({ src }) => src
         },
         likesCount: {
             type: GraphQLInt,
             description: 'Total number of likes',
-            resolve: (obj) => obj.likesCount
+            resolve: ({ likesCount }) => likesCount
         }
     },
     interfaces: [ nodeInterface ]
