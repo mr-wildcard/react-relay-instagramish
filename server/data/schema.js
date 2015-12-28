@@ -111,10 +111,10 @@ var addSelfieMutation = mutationWithClientMutationId({
     name: 'AddSelfie',
 
     inputFields: {
-        src: {
+        author: {
             type: new GraphQLNonNull(GraphQLString)
         },
-        author: {
+        src: {
             type: new GraphQLNonNull(GraphQLString)
         }
     },
