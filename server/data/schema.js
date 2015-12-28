@@ -136,7 +136,7 @@ var addSelfieMutation = mutationWithClientMutationId({
             resolve: () => db.getUser()
         }
     },
-    mutateAndGetPayload: ({ author, src }) =>  db.addSelfie(author, src)
+    mutateAndGetPayload: (selfie) => { return { localSelfieId: db.addSelfie(selfie) }; }
 });
 
 var Root = new GraphQLObjectType({
