@@ -70,6 +70,11 @@ const selfieType = new GraphQLObjectType({
             type: GraphQLInt,
             description: 'Total number of likes',
             resolve: ({ likesCount }) => likesCount
+        },
+        created_at: {
+            type: GraphQLInt,
+            description: 'Timestamp of selfie\'s creation',
+            resolve: ({ created_at }) => created_at
         }
     },
     interfaces: [ nodeInterface ]
