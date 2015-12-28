@@ -71,17 +71,20 @@ class SelfieComponent extends React.Component {
 
     render() {
 
-        const { currentTakenPicture, convertingToBase64 } = this.state;
+        const {
+            currentTakenPicture: picture,
+            convertingToBase64
+        } = this.state;
 
         return (
             <div styleName="root">
                 <div styleName="card">
 
-                    <div styleName="content" onClick={this.handleUpload.bind(this)} style={{ height: currentTakenPicture ? 'auto' : false }}>
-                        {currentTakenPicture && <img src={currentTakenPicture} styleName='selfie' ref="TakenPicture" />}
+                    <div styleName="content" onClick={picture ? false : this.handleUpload.bind(this)} style={{ height: picture ? 'auto' : false }}>
+                        {picture && <img src={picture} styleName='selfie' ref="TakenPicture" />}
                     </div>
 
-                    {currentTakenPicture && !convertingToBase64 &&
+                    {picture && !convertingToBase64 &&
                         <div styleName="extra-content">
                             <div styleName="buttons">
                                 <div styleName="save-button" onClick={this.handleSave.bind(this)}>Publier</div>
