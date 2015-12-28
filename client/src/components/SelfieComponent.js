@@ -67,6 +67,8 @@ class SelfieComponent extends React.Component {
                 viewer: this.props.viewer
             })
         );
+
+        this.context.history.pushState(null, 'feed');
     }
 
     render() {
@@ -109,6 +111,9 @@ class SelfieComponent extends React.Component {
 }
 
 SelfieComponent.displayName = 'SelfieComponent';
+SelfieComponent.contextTypes = {
+    history: React.PropTypes.object
+};
 
 const CSSModulifiedComponent = CSSModules(SelfieComponent, styles);
 
