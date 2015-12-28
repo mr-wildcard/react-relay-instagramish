@@ -9,6 +9,7 @@ import {
 
 import {
     nodeDefinitions,
+    connectionArgs,
     fromGlobalId,
     globalIdField,
     connectionFromArray,
