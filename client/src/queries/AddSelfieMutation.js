@@ -1,5 +1,4 @@
 import Relay from 'react-relay';
-import RelayMutationType from 'react-relay';
 
 class AddSelfieMutation extends Relay.Mutation {
 
@@ -36,7 +35,7 @@ class AddSelfieMutation extends Relay.Mutation {
             connectionName: 'selfies',
             edgeName: 'selfieEdge',
             rangeBehaviors: {
-                '': 'append'
+                '': 'prepend'
             }
         }];
     }
