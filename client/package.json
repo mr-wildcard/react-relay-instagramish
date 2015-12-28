@@ -28,7 +28,7 @@
   ],
   "metadata": {
     "graphql": {
-      "schema": "./graphql/schema.json"
+      "schema": "./src/data/schema/schema.json"
     }
   },
   "author": "Julien Viala <dev.vialajulien@gmail.com> (https://github.com/mr-wildcard)",

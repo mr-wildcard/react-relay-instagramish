@@ -5,7 +5,7 @@ import Relay from 'react-relay';
 import CSSModules from 'react-css-modules';
 import styles from 'styles/Selfie.css';
 import { getAppState, updateAppState } from '../AppState';
-import AddSelfieMutation from '../queries/AddSelfieMutation';
+import AddSelfieMutation from '../data/mutations/AddSelfieMutation';
 
 class SelfieComponent extends React.Component {
 

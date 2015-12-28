@@ -35,8 +35,7 @@ module.exports = {
             ,
 
             semantic: path.join(__dirname, '../semantic/dist/semantic.css'),
-            themes: path.join(__dirname, '../semantic/dist/themes'),
-            AppState: path.join(srcPath, 'AppState.js')
+            themes: path.join(__dirname, '../semantic/dist/themes')
         }
     },
     module: {

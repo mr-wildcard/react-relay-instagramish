@@ -7,7 +7,7 @@ import createBrowserHistory from 'history/lib/createBrowserHistory'
 import App from './Main';
 import Feed from './FeedComponent';
 import Selfie from './SelfieComponent';
-import ViewerQueries from '../queries/ViewerQueries';
+import ViewerQueries from '../data/queries/ViewerQueries';
 
 Relay.injectNetworkLayer(
     new Relay.DefaultNetworkLayer('http://localhost:3000/graphql')
