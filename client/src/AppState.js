@@ -6,7 +6,14 @@ const initialState = Map({
     currentTakenPicture: null
 });
 
-export let appState = initialState;
+let appState = initialState;
 
-export const login = (nickname) => appState = appState.set('nickname', nickname);
-export const loggedIn = () => appState.get('nickname').length > 0;
+const updateAppState = (key, value) => appState = appState.set(key, value);
+const loggedIn = () => appState.get('nickname').length > 0;
+
+export default {
+    appState,
+
+    updateAppState,
+    loggedIn
+}
