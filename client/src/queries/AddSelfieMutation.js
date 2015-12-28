@@ -51,7 +51,7 @@ class AddSelfieMutation extends Relay.Mutation {
 
             selfieEdge: {
                 node: {
-                    author: '',
+                    author: this.props.author,
                     src: this.props.src,
                     likesCount: this.props.likesCount
                 }
