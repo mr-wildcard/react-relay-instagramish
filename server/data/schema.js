@@ -92,6 +92,9 @@ const userType = new GraphQLObjectType({
     fields: {
         id: globalIdField('User'),
         selfies: {
+            args: {
+                ...connectionArgs
+            },
             type: SelfiesConnection,
             resolve: (obj, {...args}) => connectionFromArray(db.getSelfies(), args)
         },

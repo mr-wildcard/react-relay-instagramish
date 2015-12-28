@@ -36,7 +36,7 @@ export default Relay.createContainer(CSSModulifiedComponent, {
     fragments: {
         viewer: () => Relay.QL`
             fragment on User {
-                selfies {
+                selfies(first: 10) {
                     edges {
                         node {
                             id,
