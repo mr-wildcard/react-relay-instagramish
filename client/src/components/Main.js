@@ -6,7 +6,7 @@ import Login from './LoginComponent';
 import Header from './parts/HeaderComponent';
 import SelfieButton from './parts/SelfieButtonComponent';
 import HiddenForm from './parts/HiddenFormComponent';
-import { loggedIn, getAppState, updateAppState } from '../AppState';
+import { loggedIn } from '../AppState';
 
 class AppComponent extends React.Component {
 
