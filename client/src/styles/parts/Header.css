@@ -15,11 +15,21 @@
 }
 
 .logo {
-    /*margin-right: 15px !important;*/
+    margin-right: 15px !important;
 }
 
 .first-item {
     composes: header item from 'semantic';
+    font-weight: normal !important;
+}
+
+.first-item:before {
+    content: none !important;
+}
+
+.nickname {
+    padding: 0 5px;
+    font-weight: bold;
 }
 
 .item {

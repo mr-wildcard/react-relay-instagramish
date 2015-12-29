@@ -4,21 +4,20 @@ import React from 'react';
 import CSSModules from 'react-css-modules';
 import { Link } from 'react-router';
 import styles from 'styles/parts/Header.css';
+import { getAppState } from "../../AppState";
 import logo from '../../images/logo.jpg';
 
-const HeaderComponent = (props) => {
-
-    const itemCSSClassname = (itemName) => `item ${itemName == props.pathname ? 'active' : ''}`;
+const HeaderComponent = () => {
 
     return (
         <div styleName="root">
                 <div styleName="menu">
                     <div styleName="first-item">
                         <img src={logo} styleName="logo" />
-                        {/*<span>Hello {appState.get('nickname')} !</span>*/}
+                        <span>Hello</span>
+                        <span styleName="nickname">{getAppState('nickname')}</span>
+                        <span>!</span>
                     </div>
-                    <Link to="feed" styleName={itemCSSClassname('feed')}>Feed</Link>
-                    <Link to="selfie" styleName={itemCSSClassname('selfie')}>Take a selfie !</Link>
                 </div>
         </div>
     );
@@ -30,4 +29,4 @@ HeaderComponent.propTypes = {
     pathname: React.PropTypes.string.isRequired
 };
 
-export default CSSModules(HeaderComponent, styles, { allowMultiple: true });
+export default CSSModules(HeaderComponent, styles);
