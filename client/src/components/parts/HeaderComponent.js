@@ -2,9 +2,8 @@
 
 import React from 'react';
 import CSSModules from 'react-css-modules';
-import { Link } from 'react-router';
 import styles from 'styles/parts/Header.css';
-import { getAppState } from "../../AppState";
+import { getAppState } from '../../AppState';
 import logo from '../../images/logo.jpg';
 
 const HeaderComponent = () => {
