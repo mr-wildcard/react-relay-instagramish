@@ -10,4 +10,29 @@
     position: relative;
     height: calc(100% - 50px);
     overflow-y: scroll;
+.page-enter {
+    transform: translateX(110%);
+    transition: transform .4s ease;
+}
+
+.page-enter.page-enter-active {
+    transform: translateX(0);
+}
+
+.page-appear {
+    transform: translateX(99%);
+}
+
+.page-appear.page-appear-active {
+    transform: translateX(0);
+    transition: transform .4s ease;
+}
+
+.page-leave {
+    transform: translateX(0);
+    transition: transform .4s ease;
+}
+
+.page-leave.page-leave-active {
+    transform: translateX(110%);
 }

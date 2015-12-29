@@ -1,5 +1,6 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import styles from 'styles/App.css';
 import Login from './LoginComponent';
 import Header from './parts/HeaderComponent';
@@ -32,11 +33,28 @@ class AppComponent extends React.Component {
 
                 <Header />
 
-                <div styleName="page-wrapper">
-                    {this.props.children}
+                <ReactCSSTransitionGroup
+                    component="div"
+                    className={styles['page-wrapper']}
+                    transitionName={{
+                      enter: styles['page-enter'],
+                      enterActive: styles['page-enter-active'],
+                      leave: styles['page-leave'],
+                      leaveActive: styles['page-leave-active'],
+                      appear: styles['page-appear'],
+                      appearActive: styles['page-appear-active']
+                    }}
+                    transitionAppear={true}
+                    transitionAppearTimeout={500}
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={500}
+                >
+                    {React.cloneElement(this.props.children, {
+                        key: this.props.location.pathname
+                    })}
+                </ReactCSSTransitionGroup>
 
-                    {pathname === 'feed' && <SelfieButton takeSelfieHandler={this.handleSelfieButton.bind(this)} />}
-                </div>
+                {pathname === 'feed' && <SelfieButton takeSelfieHandler={this.handleSelfieButton.bind(this)} />}
 
             </div>
         )
