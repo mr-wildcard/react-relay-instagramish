@@ -85,24 +85,32 @@ class SelfieComponent extends React.Component {
         return (
             <div styleName="root">
 
-                <ReactCSSTransitionGroup
-                    component="div"
-                    className={styles['selfie-img-container']}
-                    transitionName={{
-                        enter: styles['example-enter'],
-                        enterActive: styles['example-enter-active'],
-                        leave: styles['example-leave'],
-                        leaveActive: styles['example-leave-active'],
-                        appear: styles['example-appear'],
-                        appearActive: styles['example-appear-active']
-                    }}
-                    transitionAppear={true}
-                    transitionEnterTimeout={500}
-                    transitionAppearTimeout={500}
-                    transitionLeaveTimeout={500}
-                >
-                    <img src={selfieBase64encoded} styleName='selfie'/>
-                </ReactCSSTransitionGroup>
+                {!selfieBase64encoded &&
+                    <div styleName="loader-wrapper">
+                        <div styleName="loader"></div>
+                    </div>
+                }
+
+                {selfieBase64encoded &&
+                    <ReactCSSTransitionGroup
+                        component="div"
+                        className={styles['selfie-img-container']}
+                        transitionName={{
+                            enter: styles['example-enter'],
+                            enterActive: styles['example-enter-active'],
+                            leave: styles['example-leave'],
+                            leaveActive: styles['example-leave-active'],
+                            appear: styles['example-appear'],
+                            appearActive: styles['example-appear-active']
+                        }}
+                        transitionAppear={true}
+                        transitionEnterTimeout={500}
+                        transitionAppearTimeout={500}
+                        transitionLeaveTimeout={500}
+                    >
+                        <img src={selfieBase64encoded} styleName='selfie'/>
+                    </ReactCSSTransitionGroup>
+                }
 
                 <div styleName="buttons-wrapper">
                     <div styleName="buttons">

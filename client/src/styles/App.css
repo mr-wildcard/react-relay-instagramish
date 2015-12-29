@@ -8,13 +8,13 @@
     overflow-x: hidden;
     overflow-y: scroll;
     background-color: #fff;
+    -webkit-overflow-scrolling: touch;
 }
 
 .transition-helper {
     position: absolute;
-    top: 25px;
     width: 100%;
-    height: calc(100% - 25px);
+    height: 100%;
 }
 
 .page-enter {

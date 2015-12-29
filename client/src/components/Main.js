@@ -33,11 +33,9 @@ class AppComponent extends React.Component {
 
                 <Header />
 
-                <div styleName="page-wrapper">
-                    
                     <ReactCSSTransitionGroup
                         component="div"
-                        className={styles['transition-helper']}
+                        className={styles['page-wrapper']}
                         transitionName={{
                             enter: styles['page-enter'],
                             enterActive: styles['page-enter-active'],
@@ -46,18 +44,19 @@ class AppComponent extends React.Component {
                             appear: styles['page-appear'],
                             appearActive: styles['page-appear-active']
                         }}
+                        transitionAppearTimeout={true}
                         transitionAppearTimeout={10000}
                         transitionEnterTimeout={10000}
                         transitionLeaveTimeout={10000}
                     >
-
-                        {React.cloneElement(this.props.children, {
-                            key: pathname
-                        })}
+                        <div styleName="transition-helper">
+                            {React.cloneElement(this.props.children, {
+                                key: pathname
+                            })}
+                        </div>
                     </ReactCSSTransitionGroup>
 
                     {pathname.indexOf('feed') > -1 && <SelfieButton takeSelfieHandler={this.handleSelfieButton.bind(this)} />}
-                </div>
             </div>
         )
     }
