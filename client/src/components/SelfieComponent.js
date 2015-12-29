@@ -63,7 +63,7 @@ class SelfieComponent extends React.Component {
     }
 
     handleCancel() {
-        this.context.history.pushState(null, 'feed');
+        this.context.history.goBack();
     }
 
     render() {
