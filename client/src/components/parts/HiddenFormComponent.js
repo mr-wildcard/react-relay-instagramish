@@ -29,7 +29,7 @@ class HiddenFormComponent extends React.Component {
             </form>
         );
     }
-};
+}
 
 HiddenFormComponent.displayName = 'PartsHiddenFormComponent';
 HiddenFormComponent.propTypes = {
