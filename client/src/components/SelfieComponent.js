@@ -31,7 +31,15 @@ class SelfieComponent extends React.Component {
         }
     }
 
+    clearSelfie() {
+
+        this.setState({
+            selfieBase64encoded: null
+        });
+    }
+
     replaceSelfie(base64result) {
+
         this.setState({
             selfieBase64encoded: base64result
         });
@@ -42,6 +50,9 @@ class SelfieComponent extends React.Component {
         const imageData = this.refs.HiddenForm.getFile();
 
         if (imageData) {
+
+            this.clearSelfie();
+
             encode(imageData, this.replaceSelfie.bind(this));
         }
     }
