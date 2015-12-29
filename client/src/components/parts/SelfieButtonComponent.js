@@ -1,23 +1,23 @@
 'use strict';
 
 import React from 'react';
+import CSSModules from 'react-css-modules';
+import styles from 'styles/parts/SelfieButton.css';
 
-require('styles/parts/SelfieButton.css');
+const SelfieButtonComponent = (props) => {
 
-class SelfieButtonComponent extends React.Component {
-  render() {
     return (
-      <div className="selfiebutton-component">
-        Please edit src/components/parts//SelfieButtonComponent.js to update this component!
-      </div>
+        <div>
+            <button styleName="root" onClick={props.takeSelfieHandler}>
+                <i styleName="icon"></i>
+            </button>
+        </div>
     );
-  }
-}
+};
 
 SelfieButtonComponent.displayName = 'PartsSelfieButtonComponent';
+SelfieButtonComponent.propTypes = {
+    takeSelfieHandler: React.PropTypes.func.isRequired
+};
 
-// Uncomment properties you need
-// SelfieButtonComponent.propTypes = {};
-// SelfieButtonComponent.defaultProps = {};
-
-export default SelfieButtonComponent;
+export default CSSModules(SelfieButtonComponent, styles);
