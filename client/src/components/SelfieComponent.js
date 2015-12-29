@@ -4,58 +4,45 @@ import React from 'react';
 import Relay from 'react-relay';
 import CSSModules from 'react-css-modules';
 import styles from 'styles/Selfie.css';
+import HiddenForm from './parts/HiddenFormComponent';
+import { encode } from '../utils/base64';
 import { getAppState, updateAppState } from '../AppState';
 import AddSelfieMutation from '../data/mutations/AddSelfieMutation';
 
 class SelfieComponent extends React.Component {
 
     constructor() {
-
+        
         super();
 
         this.state = {
-            currentTakenPicture: getAppState('currentTakenPicture'),
-            convertingToBase64: false
+            selfieBase64encoded: null
+        }
+    }
+    
+    componentDidMount() {
+
+        // sent via router
+        const { imageData } = this.props.location.state;
+
+        if (imageData) {
+            encode(imageData, this.replaceSelfie.bind(this));
         }
     }
 
-    handleUpload() {
-        this.refs.UploadInput.click();
-    }
-
-    imageChanged() {
-
-        if (this.refs.UploadInput.files.length) {
-
-            this.setState({
-                convertingToBase64: true
-            });
-
-            let reader = new FileReader();
-
-            reader.onloadend = ({ target }) => {
-
-                this.setState({
-                        currentTakenPicture: target.result,
-                        convertingToBase64: false
-                    },
-                    () => {
-                        updateAppState('currentTakenPicture', target.result);
-                    }
-                );
-            };
-
-            reader.readAsDataURL( this.refs.UploadInput.files[0] );
-        }
-    }
-
-    handleCancel() {
-
+    replaceSelfie(base64result) {
         this.setState({
-            currentTakenPicture: null
-        }, () => {
-            updateAppState('currentTakenPicture', null);
+            selfieBase64encoded: base64result
         });
+    }
+
+    handleImageChanged() {
+
+        const imageData = this.refs.HiddenForm.getFile();
+
+        if (imageData) {
+            encode(imageData, this.replaceSelfie.bind(this));
+        }
     }
 
     handleSave() {
@@ -63,7 +50,7 @@ class SelfieComponent extends React.Component {
         Relay.Store.update(
             new AddSelfieMutation({
                 author: getAppState('nickname'),
-                src: getAppState('currentTakenPicture'),
+                src: this.state.selfieBase64encoded,
                 viewer: this.props.viewer
             })
         );
@@ -71,40 +58,46 @@ class SelfieComponent extends React.Component {
         this.context.history.pushState(null, 'feed');
     }
 
+    handleRetry() {
+        this.refs.HiddenForm.emulateClick();
+    }
+
+    handleCancel() {
+        this.context.history.pushState(null, 'feed');
+    }
+
     render() {
 
-        const {
-            currentTakenPicture: picture,
-            convertingToBase64
-        } = this.state;
+        const { selfieBase64encoded } = this.state;
 
         return (
             <div styleName="root">
+
                 <div styleName="card">
 
-                    <div styleName="content" onClick={picture ? false : this.handleUpload.bind(this)} style={{ height: picture ? 'auto' : false }}>
-                        {picture && <img src={picture} styleName='selfie' ref="TakenPicture" />}
+                    <div styleName="content" style={{ height: !selfieBase64encoded ? 300 : 'auto' }}>
+
+                        {!selfieBase64encoded &&
+                            <div styleName="loader-wrapper">
+                                <div styleName="loader"></div>
+                            </div>
+                        }
+
+                        {selfieBase64encoded &&
+                            <img src={selfieBase64encoded} styleName='selfie'/>
+                        }
                     </div>
 
-                    {picture && !convertingToBase64 &&
-                        <div styleName="extra-content">
-                            <div styleName="buttons">
-                                <div styleName="save-button" onClick={this.handleSave.bind(this)}>Publier</div>
-                                <div styleName="cancel-button" onClick={this.handleCancel.bind(this)}>Annuler</div>
-                            </div>
+                    <div styleName="extra-content">
+                        <div styleName="buttons">
+                            <div styleName="save-button" onClick={this.handleSave.bind(this)}>Publier</div>
+                            <div styleName="retry-button" onClick={this.handleRetry.bind(this)}>Réessayer</div>
+                            <div styleName="cancel-button" onClick={this.handleCancel.bind(this)}>Annuler</div>
                         </div>
-                    }
+                    </div>
                 </div>
 
-
-                <form>
-                    <input onChange={this.imageChanged.bind(this)}
-                           ref="UploadInput"
-                           style={{position: 'absolute', left: '-10000px'}}
-                           type="file"
-                           accept="image/*"
-                    />
-                </form>
+                <HiddenForm ref="HiddenForm" handleImageChanged={this.handleImageChanged.bind(this)} />
             </div>
         );
     }
