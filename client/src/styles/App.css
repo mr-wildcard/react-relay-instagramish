@@ -9,7 +9,12 @@
 .page-wrapper {
     position: relative;
     height: calc(100% - 50px);
+    overflow-x: hidden;
     overflow-y: scroll;
+    background-color: #fff;
+
+}
+
 .page-enter {
     transform: translateX(110%);
     transition: transform .4s ease;
