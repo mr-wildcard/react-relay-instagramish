@@ -38,7 +38,7 @@ class LoginComponent extends React.Component {
 
             if (!this.state.error) {
                 updateAppState('nickname', nickname);
-                this.props.onLoggedInHandler();
+                this.props.loginHandler();
             }
         });
     }
@@ -70,7 +70,7 @@ class LoginComponent extends React.Component {
 
 LoginComponent.displayName = 'LoginComponent';
 LoginComponent.propTypes = {
-    onLoggedInHandler: React.PropTypes.func.isRequired
+    loginHandler: React.PropTypes.func.isRequired
 };
 
 export default CSSModules(LoginComponent, styles, { allowMultiple: true });

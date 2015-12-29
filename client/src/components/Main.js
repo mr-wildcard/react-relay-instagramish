@@ -7,13 +7,11 @@ import { loggedIn } from '../AppState';
 
 class AppComponent extends React.Component {
 
-    handleLogingIn() {
+    handleLogin() {
         this.context.history.pushState(null, 'feed');
     }
 
     get composedChildren() {
-
-        const { location } = this.props;
 
         return (
             <div styleName="wrapper">
@@ -31,7 +29,7 @@ class AppComponent extends React.Component {
         return (
             <div styleName="root">
 
-                {(loggedIn() && this.composedChildren) || <Login onLoggedInHandler={this.handleLogingIn.bind(this)} />}
+                {(loggedIn() && this.composedChildren) || <Login loginHandler={this.handleLogin.bind(this)} />}
 
             </div>
         );
