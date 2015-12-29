@@ -6,7 +6,7 @@ import CSSModules from 'react-css-modules';
 import styles from 'styles/Selfie.css';
 import HiddenForm from './parts/HiddenFormComponent';
 import { encode } from '../utils/base64';
-import { getAppState, updateAppState } from '../AppState';
+import { getAppState } from '../AppState';
 import AddSelfieMutation from '../data/mutations/AddSelfieMutation';
 
 class SelfieComponent extends React.Component {
