@@ -17,7 +17,7 @@ class AppComponent extends React.Component {
 
         return (
             <div styleName="wrapper">
-                <Header pathname={location.pathname} />
+                <Header />
 
                 <div styleName="page-wrapper">
                     {this.props.children}

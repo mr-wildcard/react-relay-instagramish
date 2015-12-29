@@ -25,8 +25,5 @@ const HeaderComponent = () => {
 };
 
 HeaderComponent.displayName = 'PartsHeaderComponent';
-HeaderComponent.propTypes = {
-    pathname: React.PropTypes.string.isRequired
-};
 
 export default CSSModules(HeaderComponent, styles);
