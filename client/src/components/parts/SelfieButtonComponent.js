@@ -7,8 +7,8 @@ import styles from 'styles/parts/SelfieButton.css';
 const SelfieButtonComponent = (props) => {
 
     return (
-        <div>
-            <button styleName="root" onClick={props.takeSelfieHandler}>
+        <div styleName="root">
+            <button styleName="button" onClick={props.takeSelfieHandler}>
                 <i styleName="icon"></i>
             </button>
         </div>
