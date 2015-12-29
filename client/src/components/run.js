@@ -10,7 +10,7 @@ import Selfie from './SelfieComponent';
 import ViewerQueries from '../data/queries/ViewerQueries';
 
 Relay.injectNetworkLayer(
-    new Relay.DefaultNetworkLayer('http://localhost:3000/graphql')
+    new Relay.DefaultNetworkLayer(`http://${window.location.hostname}:3000/graphql`)
 );
 
 ReactDOM.render((
