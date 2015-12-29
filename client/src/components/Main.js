@@ -33,29 +33,31 @@ class AppComponent extends React.Component {
 
                 <Header />
 
-                <ReactCSSTransitionGroup
-                    component="div"
-                    className={styles['page-wrapper']}
-                    transitionName={{
-                      enter: styles['page-enter'],
-                      enterActive: styles['page-enter-active'],
-                      leave: styles['page-leave'],
-                      leaveActive: styles['page-leave-active'],
-                      appear: styles['page-appear'],
-                      appearActive: styles['page-appear-active']
-                    }}
-                    transitionAppear={true}
-                    transitionAppearTimeout={500}
-                    transitionEnterTimeout={500}
-                    transitionLeaveTimeout={500}
-                >
-                    {React.cloneElement(this.props.children, {
-                        key: this.props.location.pathname
-                    })}
-                </ReactCSSTransitionGroup>
+                <div styleName="page-wrapper">
+                    
+                    <ReactCSSTransitionGroup
+                        component="div"
+                        className={styles['transition-helper']}
+                        transitionName={{
+                            enter: styles['page-enter'],
+                            enterActive: styles['page-enter-active'],
+                            leave: styles['page-leave'],
+                            leaveActive: styles['page-leave-active'],
+                            appear: styles['page-appear'],
+                            appearActive: styles['page-appear-active']
+                        }}
+                        transitionAppearTimeout={10000}
+                        transitionEnterTimeout={10000}
+                        transitionLeaveTimeout={10000}
+                    >
 
-                {pathname === 'feed' && <SelfieButton takeSelfieHandler={this.handleSelfieButton.bind(this)} />}
+                        {React.cloneElement(this.props.children, {
+                            key: pathname
+                        })}
+                    </ReactCSSTransitionGroup>
 
+                    {pathname.indexOf('feed') > -1 && <SelfieButton takeSelfieHandler={this.handleSelfieButton.bind(this)} />}
+                </div>
             </div>
         )
     }

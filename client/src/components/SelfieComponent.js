@@ -3,6 +3,7 @@
 import React from 'react';
 import Relay from 'react-relay';
 import CSSModules from 'react-css-modules';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import styles from 'styles/Selfie.css';
 import HiddenForm from './parts/HiddenFormComponent';
 import { encode } from '../utils/base64';
@@ -73,27 +74,30 @@ class SelfieComponent extends React.Component {
         return (
             <div styleName="root">
 
-                <div styleName="card">
+                <ReactCSSTransitionGroup
+                    component="div"
+                    className={styles['selfie-img-container']}
+                    transitionName={{
+                        enter: styles['example-enter'],
+                        enterActive: styles['example-enter-active'],
+                        leave: styles['example-leave'],
+                        leaveActive: styles['example-leave-active'],
+                        appear: styles['example-appear'],
+                        appearActive: styles['example-appear-active']
+                    }}
+                    transitionAppear={true}
+                    transitionEnterTimeout={500}
+                    transitionAppearTimeout={500}
+                    transitionLeaveTimeout={500}
+                >
+                    <img src={selfieBase64encoded} styleName='selfie'/>
+                </ReactCSSTransitionGroup>
 
-                    <div styleName="content" style={{ height: !selfieBase64encoded ? 300 : 'auto' }}>
-
-                        {!selfieBase64encoded &&
-                            <div styleName="loader-wrapper">
-                                <div styleName="loader"></div>
-                            </div>
-                        }
-
-                        {selfieBase64encoded &&
-                            <img src={selfieBase64encoded} styleName='selfie'/>
-                        }
-                    </div>
-
-                    <div styleName="extra-content">
-                        <div styleName="buttons">
-                            <div styleName="save-button" onClick={this.handleSave.bind(this)}>Publier</div>
-                            <div styleName="retry-button" onClick={this.handleRetry.bind(this)}>Réessayer</div>
-                            <div styleName="cancel-button" onClick={this.handleCancel.bind(this)}>Annuler</div>
-                        </div>
+                <div styleName="buttons-wrapper">
+                    <div styleName="buttons">
+                        <div styleName="save-button" onClick={this.handleSave.bind(this)}>Publier</div>
+                        <div styleName="retry-button" onClick={this.handleRetry.bind(this)}>Réessayer</div>
+                        <div styleName="cancel-button" onClick={this.handleCancel.bind(this)}>Annuler</div>
                     </div>
                 </div>
 

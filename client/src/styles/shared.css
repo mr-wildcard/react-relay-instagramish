@@ -1,8 +1,7 @@
 .page {
     composes: ui container from 'semantic';
-    position: absolute;
-    top: 25px;
-    min-height: calc(100% - 25px);
+    position: relative;
+    min-height: 100%;
     margin: 0 !important;
     background-color: #fff;
 }

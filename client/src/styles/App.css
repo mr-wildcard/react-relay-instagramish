@@ -1,8 +1,4 @@
-.root {
-    height: 100%;
-}
-
-.main-wrapper {
+.root, .main-wrapper {
     height: 100%;
 }
 
@@ -12,12 +8,18 @@
     overflow-x: hidden;
     overflow-y: scroll;
     background-color: #fff;
+}
 
+.transition-helper {
+    position: absolute;
+    top: 25px;
+    width: 100%;
+    height: calc(100% - 25px);
 }
 
 .page-enter {
     transform: translateX(110%);
-    transition: transform .4s ease;
+    transition: transform 10s ease;
 }
 
 .page-enter.page-enter-active {
@@ -30,12 +32,12 @@
 
 .page-appear.page-appear-active {
     transform: translateX(0);
-    transition: transform .4s ease;
+    transition: transform 10s ease;
 }
 
 .page-leave {
     transform: translateX(0);
-    transition: transform .4s ease;
+    transition: transform 10s ease;
 }
 
 .page-leave.page-leave-active {

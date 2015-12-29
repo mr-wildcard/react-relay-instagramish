@@ -1,16 +1,9 @@
-.root{
+.root {
     composes: page from './shared.css';
-    composes: ui cards from 'semantic';
-}
-
-.card {
-    composes: ui fluid card from 'semantic';
-    margin: 0 !important;
 }
 
 .content {
-    composes: content dimmer from 'semantic';
-    padding: 0 !important;
+    composes: ui container from 'semantic';
 }
 
 .selfie {
@@ -19,8 +12,10 @@
     margin: 0 auto;
 }
 
-.extra-content {
-    composes: extra content from 'semantic';
+.buttons-wrapper {
+    position: absolute;
+    width: 100%;
+    bottom: 20px;
 }
 
 .buttons {
@@ -44,4 +39,39 @@
 .cancel-button {
     composes: button;
     composes: red from 'semantic';
+}
+
+.loader-wrapper {
+    composes: ui active inverted dimmer from 'semantic';
+}
+
+.loader {
+    composes: ui large text loader from 'semantic';
+}
+
+.example-enter {
+    opacity: 0.01;
+    transition: opacity .5s ease-in;
+}
+
+.example-enter.example-enter-active {
+    opacity: 1;
+}
+
+.example-appear {
+    opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+    opacity: 1;
+    transition: opacity .5s ease-in;
+}
+
+.example-leave {
+    opacity: 1;
+    transition: opacity .5s ease-in;
+}
+
+.example-leave.example-leave-active {
+    opacity: 0;
 }
