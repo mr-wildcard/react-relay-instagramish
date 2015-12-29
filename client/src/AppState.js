@@ -2,8 +2,7 @@ import { Map } from 'immutable';
 
 // Look ma, i'm a immutable state !
 const initialState = Map({
-    nickname: '',
-    currentTakenPicture: null
+    nickname: ''
 });
 
 let appState = initialState;
