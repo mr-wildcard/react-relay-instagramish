@@ -2,11 +2,12 @@
     height: 100%;
 }
 
-.wrapper {
+.main-wrapper {
     height: 100%;
 }
 
 .page-wrapper {
+    position: relative;
     height: calc(100% - 50px);
     overflow-y: scroll;
 }
