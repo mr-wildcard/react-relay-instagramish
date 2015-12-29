@@ -1,8 +1,11 @@
 .root {
-    composes: massive teal circular ui icon button from 'semantic';
     position: fixed;
     right: 20px;
     bottom: 20px;
+}
+
+.button {
+    composes: massive teal circular ui icon button from 'semantic';
 }
 
 .icon {
