@@ -27,6 +27,15 @@ class AddSelfieMutation extends Relay.Mutation {
         `;
     }
 
+    // this breaks upload
+    /*
+    getFiles() {
+        return {
+            src: this.props.src
+        };
+    }
+    */
+
     getConfigs() {
         return [{
             type: 'RANGE_ADD',
