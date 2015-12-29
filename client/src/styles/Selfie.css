@@ -9,9 +9,7 @@
 }
 
 .content {
-    composes: content from 'semantic';
-    height: 320px;
-    background: #fff url(../images/camera_1x.png) no-repeat center center !important;
+    composes: content dimmer from 'semantic';
     padding: 0 !important;
 }
 
@@ -26,7 +24,7 @@
 }
 
 .buttons {
-    composes: ui two buttons from 'semantic';
+    composes: ui three buttons from 'semantic';
 }
 
 .button {
@@ -36,6 +34,11 @@
 .save-button {
     composes: button;
     composes: green from 'semantic';
+}
+
+.retry-button {
+    composes: button;
+    composes: orange from 'semantic';
 }
 
 .cancel-button {
