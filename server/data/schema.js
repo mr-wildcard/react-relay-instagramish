@@ -3,7 +3,6 @@ import {
     GraphQLObjectType,
     GraphQLString,
     GraphQLInt,
-    GraphQLList,
     GraphQLNonNull
 } from 'graphql';
 
@@ -111,7 +110,6 @@ const userType = new GraphQLObjectType({
     },
     interfaces: [ nodeInterface ]
 });
-
 
 var addSelfieMutation = mutationWithClientMutationId({
     name: 'AddSelfie',
