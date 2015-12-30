@@ -19,9 +19,15 @@ class AppComponent extends React.Component {
     }
 
     handleImageChanged() {
-        this.context.history.pushState({
-            imageData: this.refs.HiddenForm.getFile()
-        }, 'selfie');
+
+        const imageData = this.refs.HiddenForm.getFile();
+
+        if (imageData) {
+
+            this.context.history.pushState({
+                imageData: this.refs.HiddenForm.getFile()
+            }, 'selfie');
+        }
     }
 
     get composedChildren() {
