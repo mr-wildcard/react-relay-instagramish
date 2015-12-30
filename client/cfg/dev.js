@@ -9,7 +9,7 @@ var BowerWebpackPlugin = require('bower-webpack-plugin');
 
 var config = _.merge({
     entry: [
-        'webpack-dev-server/client?http://192.168.1.11:8000',
+        'webpack-dev-server/client?http://localhost:8000',
         'webpack/hot/only-dev-server',
         './src/components/run'
     ],
