@@ -10,7 +10,7 @@ import graphqlHTTP from 'koa-graphql';
 import graphQLSchema from './data/schema';
 
 let app = koa();
-let storage = multer.memoryStorage();
+//let storage = multer.memoryStorage();
 
 app.use(cors());
 
