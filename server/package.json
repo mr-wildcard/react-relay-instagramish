@@ -4,7 +4,8 @@
   "description": "Server side",
   "main": "server.js",
   "scripts": {
-    "start": "babel-node server.js",
+    "postinstall": "npm run update-schema",
+    "start": "nodemon --exec babel-node server.js",
     "update-schema": "babel-node ./scripts/updateSchema.js"
   },
   "repository": {
