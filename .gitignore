@@ -88,4 +88,4 @@ client/semantic/gulpfile.js
 client/src/data/schema/**
 !client/src/data/schema/.gitkeep
 
-server/cloudinary.config.json
+server/cloudinary.config.js
