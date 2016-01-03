@@ -64,10 +64,12 @@ class SelfieComponent extends React.Component {
                 author: getAppState('nickname'),
                 src: this.state.selfieBase64encoded,
                 viewer: this.props.viewer
-            })
-        );
-
-        this.context.history.pushState(null, 'feed');
+            }),
+            {
+                onFailure: (transaction) => console.log('Error !:', transaction.getError()),
+                onSuccess() { this.context.history.pushState(null, 'feed') }
+            }
+        )
     }
 
     handleRetry() {
