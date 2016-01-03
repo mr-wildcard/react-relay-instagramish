@@ -4,12 +4,12 @@ var selfieNextId = 0;
 var selfies = [
     {
         author: 'Leo',
-        src: 'http://res.cloudinary.com/dsubvwiw9/image/upload/c_scale,w_695/v1451833109/leo_wcs8v6.jpg',
+        src: 'http://res.cloudinary.com/dsubvwiw9/image/upload/c_scale,w_695/v1451858695/selfy/leo.jpg',
         created_at: 1451317030544
     },
     {
         author: 'Kim',
-        src: 'http://res.cloudinary.com/dsubvwiw9/image/upload/c_scale,w_695/v1451833115/kim_rbtf89.jpg',
+        src: 'http://res.cloudinary.com/dsubvwiw9/image/upload/c_scale,w_695/v1451858697/selfy/kim.jpg',
         likesCount: 9525251,
         created_at: 1451317130544
     }
