@@ -1,12 +1,12 @@
 # Selfhi - a React/Relay powered Instagram-ish application
 
-I got inspired by the [great talk](https://youtu.be/IrgHurBjQbg) by [Joseph Savona](https://twitter.com/en_JS) and decided to hack around with GraphQL and Relay.
+I got inspired by the [great talk](https://youtu.be/IrgHurBjQbg) by [Joseph Savona](https://twitter.com/en_JS) and decided to give a try to GraphQL and Relay.
 
 ![Joseph Savona - Relay: An Application Framework For React at react-europe 2015](presentation/joe_talk.png)
 
 This is a work in progress and I'm still trying to wrap head around GraphQL concept as this is pretty new to me.
 
-## I use:
+## Stack:
 - React
 - Relay
 - CSS Modules
