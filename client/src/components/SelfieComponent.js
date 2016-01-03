@@ -141,9 +141,9 @@ class SelfieComponent extends React.Component {
 
                 <div styleName="buttons-wrapper">
                     <div styleName="buttons">
-                        <div styleName={saveButtonCSSClassnames} onClick={this.handleSave.bind(this)}>Publier</div>
-                        <div styleName={retryButtonCSSClassnames} onClick={this.handleRetry.bind(this)}>Réessayer</div>
-                        <div styleName={cancelButtonCSSClassnames} onClick={this.handleCancel.bind(this)}>Annuler</div>
+                        <div styleName={saveButtonCSSClassnames} onClick={!uploading ? this.handleSave.bind(this) : false}>Publier</div>
+                        <div styleName={retryButtonCSSClassnames} onClick={!uploading ? this.handleRetry.bind(this) : false}>Réessayer</div>
+                        <div styleName={cancelButtonCSSClassnames} onClick={!uploading ? this.handleCancel.bind(this) : false}>Annuler</div>
                     </div>
                 </div>
 
