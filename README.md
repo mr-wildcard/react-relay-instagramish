@@ -1,4 +1,4 @@
-I got inspired by the [great talk](https://youtu.be/IrgHurBjQbg) by [Joseph Savona](https://twitter.com/en_JS) and decided to give a try to GraphQL and Relay.
+I got inspired by the [great talk](https://youtu.be/IrgHurBjQbg) of [Joseph Savona](https://twitter.com/en_JS) and decided to give a try to GraphQL and Relay.
 
 ![Joseph Savona - Relay: An Application Framework For React at react-europe 2015](presentation/joe_talk.png)
 
