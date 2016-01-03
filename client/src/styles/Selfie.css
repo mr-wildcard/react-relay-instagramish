@@ -23,7 +23,17 @@
 }
 
 .button {
-    composes: ui basic button from 'semantic';
+    composes: ui button from 'semantic';
+}
+
+.loading-button {
+    composes: button;
+    composes: loading from 'semantic';
+}
+
+.disabled-button {
+    composes: button;
+    composes: disabled from 'semantic';
 }
 
 .save-button {
