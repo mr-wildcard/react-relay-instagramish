@@ -1,3 +1,4 @@
+import { uploader } from 'cloudinary';
 import {
     GraphQLSchema,
     GraphQLObjectType,
@@ -140,7 +141,24 @@ var addSelfieMutation = mutationWithClientMutationId({
             resolve: () => db.getUser()
         }
     },
-    mutateAndGetPayload: (selfie) => { return { localSelfieId: db.addSelfie(selfie) }; }
+    mutateAndGetPayload: ({ author, src }) => {
+
+        return new Promise(resolve => {
+
+            uploader.upload(
+                src,
+                ({ url: src }) => {
+                    resolve({
+                        localSelfieId: db.addSelfie({ author, src })
+                    });
+                },
+                {
+                    folder: 'selfy',
+                    width: 695
+                }
+            )
+        });
+    }
 });
 
 var Root = new GraphQLObjectType({
