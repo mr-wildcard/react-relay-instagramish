@@ -4,6 +4,7 @@ import React from 'react';
 import Relay from 'react-relay';
 import CSSModules from 'react-css-modules';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import cs from 'classnames';
 import styles from 'styles/Selfie.css';
 import HiddenForm from './parts/HiddenFormComponent';
 import { encode } from '../utils/base64';
@@ -17,7 +18,8 @@ class SelfieComponent extends React.Component {
         super();
 
         this.state = {
-            selfieBase64encoded: null
+            selfieBase64encoded: null,
+            uploading: false
         }
     }
     
@@ -59,15 +61,25 @@ class SelfieComponent extends React.Component {
 
     handleSave() {
 
+        this.setState({
+            uploading: true
+        });
+
         Relay.Store.update(
             new AddSelfieMutation({
                 author: getAppState('nickname'),
                 src: this.state.selfieBase64encoded,
                 viewer: this.props.viewer
-            })
-        );
-
-        this.context.history.pushState(null, 'feed');
+            }),
+            {
+                onFailure: () => {
+                    this.setState({
+                        uploading: false
+                    });
+                },
+                onSuccess: () => { this.context.history.pushState(null, 'feed') }
+            }
+        )
     }
 
     handleRetry() {
@@ -80,7 +92,22 @@ class SelfieComponent extends React.Component {
 
     render() {
 
-        const { selfieBase64encoded } = this.state;
+        const { selfieBase64encoded, uploading } = this.state;
+
+        let saveButtonCSSClassnames = cs({
+            'save-button': true,
+            'loading-button': uploading
+        });
+
+        let retryButtonCSSClassnames = cs({
+            'retry-button': true,
+            'disabled-button': uploading
+        });
+
+        let cancelButtonCSSClassnames = cs({
+            'cancel-button': true,
+            'disabled-button': uploading
+        });
 
         return (
             <div styleName="root">
@@ -114,9 +141,9 @@ class SelfieComponent extends React.Component {
 
                 <div styleName="buttons-wrapper">
                     <div styleName="buttons">
-                        <div styleName="save-button" onClick={this.handleSave.bind(this)}>Publier</div>
-                        <div styleName="retry-button" onClick={this.handleRetry.bind(this)}>Réessayer</div>
-                        <div styleName="cancel-button" onClick={this.handleCancel.bind(this)}>Annuler</div>
+                        <div styleName={saveButtonCSSClassnames} onClick={!uploading ? this.handleSave.bind(this) : false}>Publier</div>
+                        <div styleName={retryButtonCSSClassnames} onClick={!uploading ? this.handleRetry.bind(this) : false}>Réessayer</div>
+                        <div styleName={cancelButtonCSSClassnames} onClick={!uploading ? this.handleCancel.bind(this) : false}>Annuler</div>
                     </div>
                 </div>
 
@@ -131,7 +158,7 @@ SelfieComponent.contextTypes = {
     history: React.PropTypes.object
 };
 
-const CSSModulifiedComponent = CSSModules(SelfieComponent, styles);
+const CSSModulifiedComponent = CSSModules(SelfieComponent, styles, { allowMultiple: true });
 
 export default Relay.createContainer(CSSModulifiedComponent, {
 
