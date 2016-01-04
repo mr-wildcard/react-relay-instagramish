@@ -6,8 +6,12 @@ import cors from 'koa-cors';
 import multer from 'koa-multer';
 import graphqlHTTP from 'koa-graphql';
 import graphQLSchema from './data/schema';
+import cloudinary from 'cloudinary';
+import cloudinaryConfig from './cloudinary.config';
 
 let app = koa();
+
+cloudinary.config(cloudinaryConfig);
 
 app.use(cors());
 
