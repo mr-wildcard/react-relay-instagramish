@@ -3,7 +3,6 @@
 import koa from 'koa';
 import mount from 'koa-mount';
 import cors from 'koa-cors';
-import multer from 'koa-multer';
 import graphqlHTTP from 'koa-graphql';
 import graphQLSchema from './data/schema';
 import cloudinary from 'cloudinary';
