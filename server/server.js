@@ -3,23 +3,22 @@
 import koa from 'koa';
 import mount from 'koa-mount';
 import cors from 'koa-cors';
-import route from 'koa-route';
-import multer from 'koa-multer';
-import multerWrapper from './helpers/multer';
 import graphqlHTTP from 'koa-graphql';
 import graphQLSchema from './data/schema';
+import cloudinary from 'cloudinary';
+import cloudinaryConfig from './cloudinary.config';
 
 let app = koa();
-let storage = multer.memoryStorage();
+
+cloudinary.config(cloudinaryConfig);
 
 app.use(cors());
 
-// https://github.com/chentsulin/koa-graphql/blob/master/src/__tests__/http-test.js#L600
-// app.use(mount('/graphql', multerWrapper({ storage }).single('file')));
 app.use(
     mount('/graphql', graphqlHTTP({
         schema: graphQLSchema,
-        graphiql: true
+        graphiql: true,
+        pretty: true
     }))
 );
 
