@@ -6,5 +6,5 @@ const initialState = {
 let appState = initialState;
 
 export const getAppState = (key) => appState[key];
-export const updateAppState = (key, value) => appState = { ...apState, [key]: value };
+export const updateAppState = (key, value) => appState = { ...appState, [key]: value };
 export const loggedIn = () => appState['nickname'].length > 0;
