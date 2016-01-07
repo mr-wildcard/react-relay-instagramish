@@ -5,24 +5,30 @@ var selfies = [
     {
         author: 'Leo',
         src: 'http://res.cloudinary.com/dsubvwiw9/image/upload/c_scale,w_695/v1451858695/selfy/leo.jpg',
-        created_at: 1451317030544
+        created_at: 1451317030544,
+        width: 695,
+        height: 521
     },
     {
         author: 'Kim',
         src: 'http://res.cloudinary.com/dsubvwiw9/image/upload/c_scale,w_695/v1451858697/selfy/kim.jpg',
         likesCount: 9525251,
-        created_at: 1451317130544
+        created_at: 1451317130544,
+        width: 695,
+        height: 521
     }
 ];
 
 selfies = selfies.map(data => new Selfie(data));
 
-function Selfie({ author, src, likesCount = 0, created_at = new Date().getTime() }) {
+function Selfie({ author, src, likesCount = 0, width, height, created_at = new Date().getTime() }) {
     this.id = `${selfieNextId++}`;
     this.author = author;
     this.src = src;
     this.likesCount = likesCount;
-    this.created_at = created_at
+    this.width = width;
+    this.height = height;
+    this.created_at = created_at;
 }
 
 function User(id) {

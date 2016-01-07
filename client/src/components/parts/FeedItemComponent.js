@@ -43,9 +43,10 @@ export default Relay.createContainer(CSSModulifiedComponent, {
             fragment on Selfie {
                 author,
                 src,
+                width,
+                height,
                 likesCount
             }
             `
     }
 });
-

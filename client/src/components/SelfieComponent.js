@@ -69,6 +69,8 @@ class SelfieComponent extends React.Component {
             new AddSelfieMutation({
                 author: getAppState('nickname'),
                 src: this.state.selfieBase64encoded,
+                width: this.refs.SelfieImg.naturalWidth,
+                height: this.refs.SelfieImg.naturalHeight,
                 viewer: this.props.viewer
             }),
             {
