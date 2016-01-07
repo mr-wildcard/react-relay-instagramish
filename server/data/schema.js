@@ -66,6 +66,16 @@ const selfieType = new GraphQLObjectType({
             description: 'Src of selfie image. Can be URL or base64 representation.',
             resolve: ({ src }) => src
         },
+        width: {
+           type: GraphQLInt,
+           description: 'Width of selfie',
+           resolve: ({ width }) => width
+        },
+        height: {
+            type: GraphQLInt,
+            description: 'Height of selfie',
+            resolve: ({ height }) => height
+        },
         likesCount: {
             type: GraphQLInt,
             description: 'Total number of likes',
@@ -121,6 +131,12 @@ var addSelfieMutation = mutationWithClientMutationId({
         },
         src: {
             type: new GraphQLNonNull(GraphQLString)
+        },
+        width: {
+            type: new GraphQLNonNull(GraphQLInt)
+        },
+        height: {
+            type: new GraphQLNonNull(GraphQLInt)
         }
     },
     outputFields: {
@@ -141,7 +157,7 @@ var addSelfieMutation = mutationWithClientMutationId({
             resolve: () => db.getUser()
         }
     },
-    mutateAndGetPayload: ({ author, src }) => {
+    mutateAndGetPayload: ({ author, src, width, height }) => {
 
         return new Promise(resolve => {
 
@@ -149,12 +165,11 @@ var addSelfieMutation = mutationWithClientMutationId({
                 src,
                 ({ url: src }) => {
                     resolve({
-                        localSelfieId: db.addSelfie({ author, src })
+                        localSelfieId: db.addSelfie({ author, src, width, height })
                     });
                 },
                 {
-                    folder: 'selfy',
-                    width: 695
+                   folder: 'selfy'
                 }
             )
         });
