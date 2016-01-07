@@ -153,8 +153,7 @@ var addSelfieMutation = mutationWithClientMutationId({
                     });
                 },
                 {
-                    folder: 'selfy',
-                    width: 695
+                   folder: 'selfy'
                 }
             )
         });
