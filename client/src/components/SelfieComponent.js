@@ -7,14 +7,14 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import cs from 'classnames';
 import styles from 'styles/Selfie.css';
 import HiddenForm from './parts/HiddenFormComponent';
-import { encode } from '../utils/base64';
+import processImage from '../utils/image-processing';
 import { getAppState } from '../AppState';
 import AddSelfieMutation from '../data/mutations/AddSelfieMutation';
 
 class SelfieComponent extends React.Component {
 
     constructor() {
-        
+
         super();
 
         this.state = {
@@ -22,14 +22,14 @@ class SelfieComponent extends React.Component {
             uploading: false
         }
     }
-    
+
     componentDidMount() {
 
         // sent via router
         const { imageData } = this.props.location.state;
 
         if (imageData) {
-            encode(imageData, this.replaceSelfie.bind(this));
+            processImage(imageData, 695, 60, this.replaceSelfie.bind(this));
         }
     }
 
@@ -55,7 +55,7 @@ class SelfieComponent extends React.Component {
 
             this.clearSelfie();
 
-            encode(imageData, this.replaceSelfie.bind(this));
+            processImage(imageData, 695, 60, this.replaceSelfie.bind(this));
         }
     }
 
@@ -135,7 +135,7 @@ class SelfieComponent extends React.Component {
                         transitionAppearTimeout={500}
                         transitionLeaveTimeout={500}
                     >
-                        <img src={selfieBase64encoded} styleName='selfie'/>
+                        <img src={selfieBase64encoded} ref="SelfieImg" styleName='selfie' />
                     </ReactCSSTransitionGroup>
                 }
 
