@@ -1,6 +1,7 @@
 // Look ma, i'm a immutable state !
 const initialState = {
-    nickname: ''
+    nickname: '',
+    likedSelfiesId: localStorage.getItem('idLiked') || JSON.stringify([])
 };
 
 let appState = initialState;
