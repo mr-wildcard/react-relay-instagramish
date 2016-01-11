@@ -4,7 +4,9 @@ import {
     GraphQLObjectType,
     GraphQLString,
     GraphQLInt,
-    GraphQLNonNull
+    GraphQLNonNull,
+    GraphQLBoolean,
+    GraphQLID
 } from 'graphql';
 
 import {
@@ -160,6 +162,38 @@ var addSelfieMutation = mutationWithClientMutationId({
     }
 });
 
+var changeSelfieLikesCountMutation = mutationWithClientMutationId({
+    name: 'ChangeSelfieLikesCount',
+    description: 'Add or remove like',
+
+    inputFields: {
+        liked: {
+            type: new GraphQLNonNull(GraphQLBoolean)
+        },
+        id: {
+            type: new GraphQLNonNull(GraphQLID)
+        }
+    },
+    outputFields: {
+        selfie: {
+            type: selfieType,
+            resolve: ({ localSelfieId }) => db.getSelfie(localSelfieId)
+        },
+        viewer: {
+            type: userType,
+            resolve: () => db.getUser(),
+        }
+    },
+    mutateAndGetPayload: ({ id, liked }) => {
+
+        var localSelfieId = fromGlobalId(id).id;
+
+        return {
+            localSelfieId: db.changeSelfieLikesCount(localSelfieId, liked).id
+        }
+    },
+});
+
 var Root = new GraphQLObjectType({
     name: 'Root',
     fields: () => ({
@@ -174,7 +208,8 @@ var Root = new GraphQLObjectType({
 var Mutation = new GraphQLObjectType({
     name: 'Mutation',
     fields: {
-        addSelfie: addSelfieMutation
+        addSelfie: addSelfieMutation,
+        changeSelfieLikesCount: changeSelfieLikesCountMutation
     }
 });
 

@@ -42,6 +42,16 @@ const addSelfie = (data) => {
     return newSelfie.id;
 };
 
+const changeSelfieLikesCount = (id, liked) => {
+
+    let selfie = getSelfie(id);
+    let { likesCount } = selfie;
+
+    selfie.likesCount = liked ? likesCount + 1 : likesCount - 1;
+
+    return selfie;
+}
+
 export default {
     Selfie,
     User,
@@ -49,5 +59,6 @@ export default {
     getUser,
     getSelfies,
     getSelfie,
-    addSelfie
+    addSelfie,
+    changeSelfieLikesCount
 }
