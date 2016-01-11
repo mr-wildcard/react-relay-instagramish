@@ -10,11 +10,14 @@ This is a work in progress and I'm still trying to wrap my head around GraphQL c
 - CSS Modules
 - Semantic UI
 - KoaJS
+- GraphQL
+- Cloudinary
 
 ## Resources
 - [official doc](https://facebook.github.io/relay/docs/getting-started.html#content)
-- [todo app example](https://github.com/facebook/relay/tree/master/examples/todo), the simplest example I needed to start with GraphQL/Relay. 
+- [todo app example](https://github.com/facebook/relay/tree/master/examples/todo), the simplest example I needed to start with GraphQL/Relay.
 - [auth0 article](https://auth0.com/blog/2015/10/06/getting-started-with-relay/) these guys are awesome. Checkout their [blog](https://auth0.com/blog/)!
+- [awesome video tutorial on GraphQL](https://youtu.be/DNPVqK_woRQ) thanks @leebenson
 
 ## Todo:
 - [x] :shipit:
@@ -24,4 +27,4 @@ This is a work in progress and I'm still trying to wrap my head around GraphQL c
 - [ ] tests
 - [ ] host on Heroku
 - [ ] page transitions
-- [ ] FeedItem's loading animation
+- [ ] React Native
