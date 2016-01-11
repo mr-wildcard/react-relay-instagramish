@@ -5,8 +5,7 @@ class AddSelfieMutation extends Relay.Mutation {
     static fragments = {
         viewer: () => Relay.QL`
             fragment on User {
-                id,
-                totalCount,
+                id
             }
             `
     };
@@ -20,8 +19,7 @@ class AddSelfieMutation extends Relay.Mutation {
             fragment on AddSelfiePayload {
                 selfieEdge,
                 viewer {
-                    selfies,
-                    totalCount
+                    selfies
                 }
             }
         `;
