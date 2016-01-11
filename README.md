@@ -22,7 +22,7 @@ This is a work in progress and I'm still trying to wrap my head around GraphQL c
 ## Todo:
 - [x] :shipit:
 - [x] add KoaJS middleware to upload selfies on Cloudinary before koa-graphql handles request
-- [ ] add/remove Like mutation
+- [x] add/remove Like mutation
 - [ ] handle server side errors
 - [ ] tests
 - [ ] host on Heroku
