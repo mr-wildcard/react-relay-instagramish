@@ -25,4 +25,4 @@ This is a work in progress and I'm still trying to wrap head around GraphQL conc
 - [ ] tests
 - [ ] host on Heroku
 - [ ] page transitions
-- [ ] FeedItem's loading animation
+- [ ] React Native
