@@ -4,7 +4,9 @@ import {
     GraphQLObjectType,
     GraphQLString,
     GraphQLInt,
-    GraphQLNonNull
+    GraphQLNonNull,
+    GraphQLBoolean,
+    GraphQLID
 } from 'graphql';
 
 import {
@@ -66,6 +68,16 @@ const selfieType = new GraphQLObjectType({
             description: 'Src of selfie image. Can be URL or base64 representation.',
             resolve: ({ src }) => src
         },
+        width: {
+           type: GraphQLInt,
+           description: 'Width of selfie',
+           resolve: ({ width }) => width
+        },
+        height: {
+            type: GraphQLInt,
+            description: 'Height of selfie',
+            resolve: ({ height }) => height
+        },
         likesCount: {
             type: GraphQLInt,
             description: 'Total number of likes',
@@ -121,6 +133,12 @@ var addSelfieMutation = mutationWithClientMutationId({
         },
         src: {
             type: new GraphQLNonNull(GraphQLString)
+        },
+        width: {
+            type: new GraphQLNonNull(GraphQLInt)
+        },
+        height: {
+            type: new GraphQLNonNull(GraphQLInt)
         }
     },
     outputFields: {
@@ -141,7 +159,7 @@ var addSelfieMutation = mutationWithClientMutationId({
             resolve: () => db.getUser()
         }
     },
-    mutateAndGetPayload: ({ author, src }) => {
+    mutateAndGetPayload: ({ author, src, width, height }) => {
 
         return new Promise(resolve => {
 
@@ -149,7 +167,7 @@ var addSelfieMutation = mutationWithClientMutationId({
                 src,
                 ({ url: src }) => {
                     resolve({
-                        localSelfieId: db.addSelfie({ author, src })
+                        localSelfieId: db.addSelfie({ author, src, width, height })
                     });
                 },
                 {
@@ -158,6 +176,38 @@ var addSelfieMutation = mutationWithClientMutationId({
             )
         });
     }
+});
+
+var changeSelfieLikesCountMutation = mutationWithClientMutationId({
+    name: 'ChangeSelfieLikesCount',
+    description: 'Add or remove like',
+
+    inputFields: {
+        liked: {
+            type: new GraphQLNonNull(GraphQLBoolean)
+        },
+        id: {
+            type: new GraphQLNonNull(GraphQLID)
+        }
+    },
+    outputFields: {
+        selfie: {
+            type: selfieType,
+            resolve: ({ localSelfieId }) => db.getSelfie(localSelfieId)
+        },
+        viewer: {
+            type: userType,
+            resolve: () => db.getUser(),
+        }
+    },
+    mutateAndGetPayload: ({ id, liked }) => {
+
+        var localSelfieId = fromGlobalId(id).id;
+
+        return {
+            localSelfieId: db.changeSelfieLikesCount(localSelfieId, liked).id
+        }
+    },
 });
 
 var Root = new GraphQLObjectType({
@@ -174,7 +224,8 @@ var Root = new GraphQLObjectType({
 var Mutation = new GraphQLObjectType({
     name: 'Mutation',
     fields: {
-        addSelfie: addSelfieMutation
+        addSelfie: addSelfieMutation,
+        changeSelfieLikesCount: changeSelfieLikesCountMutation
     }
 });
 

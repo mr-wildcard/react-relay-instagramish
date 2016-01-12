@@ -2,7 +2,7 @@ I got inspired by the [great talk](https://youtu.be/IrgHurBjQbg) of [Joseph Savo
 
 [![Joseph Savona - Relay: An Application Framework For React at react-europe 2015](presentation/joe_talk.png)](https://youtu.be/IrgHurBjQbg)
 
-This is a work in progress and I'm still trying to wrap head around GraphQL concept as this is pretty new to me.
+This is a work in progress and I'm still trying to wrap my head around GraphQL concept as this is pretty new to me.
 
 ## Stack:
 - React
@@ -13,14 +13,16 @@ This is a work in progress and I'm still trying to wrap head around GraphQL conc
 
 ## Resources
 - [official doc](https://facebook.github.io/relay/docs/getting-started.html#content)
-- [todo app example](https://github.com/facebook/relay/tree/master/examples/todo), the simplest example I needed to start with GraphQL/Relay. 
+- [todo app example](https://github.com/facebook/relay/tree/master/examples/todo), the simplest example I needed to start with GraphQL/Relay.
 - [auth0 article](https://auth0.com/blog/2015/10/06/getting-started-with-relay/) these guys are awesome. Checkout their [blog](https://auth0.com/blog/)!
+- [awesome video tutorial on GraphQL](https://youtu.be/DNPVqK_woRQ) thanks @leebenson
 
 ## Todo:
 - [x] :shipit:
 - [x] add KoaJS middleware to upload selfies on Cloudinary before koa-graphql handles request
-- [ ] add/remove Like mutation
+- [x] add/remove Like mutation
 - [ ] handle server side errors
 - [ ] tests
 - [ ] host on Heroku
 - [ ] page transitions
+- [ ] React Native

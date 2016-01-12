@@ -5,8 +5,7 @@ class AddSelfieMutation extends Relay.Mutation {
     static fragments = {
         viewer: () => Relay.QL`
             fragment on User {
-                id,
-                totalCount,
+                id
             }
             `
     };
@@ -20,8 +19,7 @@ class AddSelfieMutation extends Relay.Mutation {
             fragment on AddSelfiePayload {
                 selfieEdge,
                 viewer {
-                    selfies,
-                    totalCount
+                    selfies
                 }
             }
         `;
@@ -52,7 +50,9 @@ class AddSelfieMutation extends Relay.Mutation {
     getVariables() {
         return {
             author: this.props.author,
-            src: this.props.src
+            src: this.props.src,
+            width: this.props.width,
+            height: this.props.height
         };
     }
 
@@ -64,7 +64,8 @@ class AddSelfieMutation extends Relay.Mutation {
                 node: {
                     author: this.props.author,
                     src: this.props.src,
-                    likesCount: this.props.likesCount
+                    width: this.props.width,
+                    height: this.props.height
                 }
             },
             viewer: {

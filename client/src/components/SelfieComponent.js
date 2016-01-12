@@ -65,10 +65,12 @@ class SelfieComponent extends React.Component {
             uploading: true
         });
 
-        Relay.Store.update(
+        Relay.Store.commitUpdate(
             new AddSelfieMutation({
                 author: getAppState('nickname'),
                 src: this.state.selfieBase64encoded,
+                width: this.refs.SelfieImg.naturalWidth,
+                height: this.refs.SelfieImg.naturalHeight,
                 viewer: this.props.viewer
             }),
             {
@@ -79,7 +81,7 @@ class SelfieComponent extends React.Component {
                 },
                 onSuccess: () => { this.context.history.pushState(null, 'feed') }
             }
-        )
+        );
     }
 
     handleRetry() {

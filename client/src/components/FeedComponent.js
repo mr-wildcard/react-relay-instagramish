@@ -43,8 +43,7 @@ export default Relay.createContainer(CSSModulifiedComponent, {
                             ${FeedItem.getFragment('selfie')}
                         }
                     }
-                },
-                totalCount
+                }
             }
             `
     }

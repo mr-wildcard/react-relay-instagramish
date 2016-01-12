@@ -26,6 +26,10 @@
     composes: heart outline like icon from 'semantic';
 }
 
+.liked-icon {
+    composes: red heart icon from 'semantic';
+}
+
 .comment-icon {
     composes: comment icon from 'semantic';
 }
